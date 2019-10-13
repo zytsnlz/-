@@ -1,24 +1,23 @@
 package cn.edu.ncst.car.service;
 
-import cn.edu.ncst.car.mbg.model.UmsAdmin;
-import cn.edu.ncst.car.mbg.model.UmsPermission;
+import cn.edu.ncst.car.mbg.model.AuthPermission;
+import cn.edu.ncst.car.mbg.model.AuthUser;
 
 import java.util.List;
 
 /**
  * 后台管理员Service
- * Created by macro on 2018/4/26.
  */
 public interface UmsAdminService {
     /**
      * 根据用户名获取后台管理员
      */
-    UmsAdmin getAdminByUsername(String username);
+    AuthUser getAdminByUsername(String username);
 
     /**
      * 注册功能
      */
-    UmsAdmin register(UmsAdmin umsAdminParam);
+    AuthUser register(AuthUser umsAdminParam);
 
     /**
      * 登录功能
@@ -31,5 +30,5 @@ public interface UmsAdminService {
     /**
      * 获取用户所有权限（包括角色权限和+-权限）
      */
-    List<UmsPermission> getPermissionList(Long adminId);
+    List<AuthPermission> getPermissionList(Long adminId);
 }
