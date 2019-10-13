@@ -1,8 +1,8 @@
 package cn.edu.ncst.car.config;
 
 import cn.edu.ncst.car.dto.AdminUserDetails;
-import cn.edu.ncst.car.mbg.model.UmsAdmin;
-import cn.edu.ncst.car.mbg.model.UmsPermission;
+import cn.edu.ncst.car.mbg.model.AuthPermission;
+import cn.edu.ncst.car.mbg.model.AuthUser;
 import cn.edu.ncst.car.service.UmsAdminService;
 import cn.edu.ncst.car.component.JwtAuthenticationTokenFilter;
 import cn.edu.ncst.car.component.RestAuthenticationEntryPoint;
@@ -95,9 +95,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService() {
         //获取登录用户信息
         return username -> {
-            UmsAdmin admin = adminService.getAdminByUsername(username);
+            AuthUser admin = adminService.getAdminByUsername(username);
             if (admin != null) {
-                List<UmsPermission> permissionList = adminService.getPermissionList(admin.getId());
+                List<AuthPermission> permissionList = adminService.getPermissionList(admin.getId());
                 return new AdminUserDetails(admin,permissionList);
             }
             throw new UsernameNotFoundException("用户名或密码错误");

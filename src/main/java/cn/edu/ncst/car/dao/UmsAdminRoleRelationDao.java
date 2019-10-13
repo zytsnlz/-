@@ -1,7 +1,7 @@
 package cn.edu.ncst.car.dao;
 
 
-import cn.edu.ncst.car.mbg.model.UmsPermission;
+import cn.edu.ncst.car.mbg.model.AuthPermission;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -15,5 +15,5 @@ public interface UmsAdminRoleRelationDao {
     /**
      * 获取用户所有权限(包括+-权限)
      */
-    List<UmsPermission> getPermissionList(@Param("adminId") Long adminId);
+    List<AuthPermission> getPermissionList(@Param("adminId") Long adminId);
 }

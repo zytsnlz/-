@@ -2,10 +2,10 @@ package cn.edu.ncst.car.service.impl;
 
 import cn.edu.ncst.car.common.utils.JwtTokenUtil;
 import cn.edu.ncst.car.dao.UmsAdminRoleRelationDao;
-import cn.edu.ncst.car.mbg.mapper.UmsAdminMapper;
-import cn.edu.ncst.car.mbg.model.UmsAdmin;
-import cn.edu.ncst.car.mbg.model.UmsAdminExample;
-import cn.edu.ncst.car.mbg.model.UmsPermission;
+import cn.edu.ncst.car.mbg.mapper.AuthUserMapper;
+import cn.edu.ncst.car.mbg.model.AuthPermission;
+import cn.edu.ncst.car.mbg.model.AuthUser;
+import cn.edu.ncst.car.mbg.model.AuthUserExample;
 import cn.edu.ncst.car.service.UmsAdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,15 +40,15 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Value("${jwt.tokenHead}")
     private String tokenHead;
     @Autowired
-    private UmsAdminMapper adminMapper;
+    private AuthUserMapper adminMapper;
     @Autowired
     private UmsAdminRoleRelationDao adminRoleRelationDao;
 
     @Override
-    public UmsAdmin getAdminByUsername(String username) {
-        UmsAdminExample example = new UmsAdminExample();
+    public AuthUser getAdminByUsername(String username) {
+        AuthUserExample example = new AuthUserExample();
         example.createCriteria().andUsernameEqualTo(username);
-        List<UmsAdmin> adminList = adminMapper.selectByExample(example);
+        List<AuthUser> adminList = adminMapper.selectByExample(example);
         if (adminList != null && adminList.size() > 0) {
             return adminList.get(0);
         }
@@ -56,15 +56,15 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     }
 
     @Override
-    public UmsAdmin register(UmsAdmin umsAdminParam) {
-        UmsAdmin umsAdmin = new UmsAdmin();
+    public AuthUser register(AuthUser umsAdminParam) {
+        AuthUser umsAdmin = new AuthUser();
         BeanUtils.copyProperties(umsAdminParam, umsAdmin);
         umsAdmin.setCreateTime(new Date());
         umsAdmin.setStatus(1);
         //查询是否有相同用户名的用户
-        UmsAdminExample example = new UmsAdminExample();
+        AuthUserExample example = new AuthUserExample();
         example.createCriteria().andUsernameEqualTo(umsAdmin.getUsername());
-        List<UmsAdmin> umsAdminList = adminMapper.selectByExample(example);
+        List<AuthUser> umsAdminList = adminMapper.selectByExample(example);
         if (umsAdminList.size() > 0) {
             return null;
         }
@@ -74,6 +74,8 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         adminMapper.insert(umsAdmin);
         return umsAdmin;
     }
+
+
 
     @Override
     public String login(String username, String password) {
@@ -94,7 +96,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
 
     @Override
-    public List<UmsPermission> getPermissionList(Long adminId) {
+    public List<AuthPermission> getPermissionList(Long adminId) {
         return adminRoleRelationDao.getPermissionList(adminId);
     }
 }

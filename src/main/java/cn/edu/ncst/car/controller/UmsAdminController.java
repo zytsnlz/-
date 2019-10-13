@@ -1,8 +1,8 @@
 package cn.edu.ncst.car.controller;
 
 import cn.edu.ncst.car.dto.UmsAdminLoginParam;
-import cn.edu.ncst.car.mbg.model.UmsAdmin;
-import cn.edu.ncst.car.mbg.model.UmsPermission;
+import cn.edu.ncst.car.mbg.model.AuthPermission;
+import cn.edu.ncst.car.mbg.model.AuthUser;
 import cn.edu.ncst.car.service.UmsAdminService;
 import cn.edu.ncst.car.common.api.CommonResult;
 import io.swagger.annotations.Api;
@@ -35,8 +35,8 @@ public class UmsAdminController {
     @ApiOperation(value = "用户注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult<UmsAdmin> register(@RequestBody UmsAdmin umsAdminParam, BindingResult result) {
-        UmsAdmin umsAdmin = adminService.register(umsAdminParam);
+    public CommonResult<AuthUser> register(@RequestBody AuthUser umsAdminParam, BindingResult result) {
+        AuthUser umsAdmin = adminService.register(umsAdminParam);
         if (umsAdmin == null) {
             CommonResult.failed();
         }
@@ -60,8 +60,8 @@ public class UmsAdminController {
     @ApiOperation("获取用户所有权限（包括+-权限）")
     @RequestMapping(value = "/permission/{adminId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsPermission>> getPermissionList(@PathVariable Long adminId) {
-        List<UmsPermission> permissionList = adminService.getPermissionList(adminId);
+    public CommonResult<List<AuthPermission>> getPermissionList(@PathVariable Long adminId) {
+        List<AuthPermission> permissionList = adminService.getPermissionList(adminId);
         return CommonResult.success(permissionList);
     }
 }

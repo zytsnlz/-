@@ -1,7 +1,7 @@
 package cn.edu.ncst.car.dto;
 
-import cn.edu.ncst.car.mbg.model.UmsAdmin;
-import cn.edu.ncst.car.mbg.model.UmsPermission;
+import cn.edu.ncst.car.mbg.model.AuthPermission;
+import cn.edu.ncst.car.mbg.model.AuthUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
  * Created by macro on 2018/4/26.
  */
 public class AdminUserDetails implements UserDetails {
-    private UmsAdmin umsAdmin;
-    private List<UmsPermission> permissionList;
-    public AdminUserDetails(UmsAdmin umsAdmin, List<UmsPermission> permissionList) {
+    private AuthUser umsAdmin;
+    private List<AuthPermission> permissionList;
+    public AdminUserDetails(AuthUser umsAdmin, List<AuthPermission> permissionList) {
         this.umsAdmin = umsAdmin;
         this.permissionList = permissionList;
     }
