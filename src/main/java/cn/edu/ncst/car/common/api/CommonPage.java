@@ -1,6 +1,8 @@
 package cn.edu.ncst.car.common.api;
 
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -10,37 +12,33 @@ import java.util.List;
  * Created by macro on 2019/4/19.
  */
 public class CommonPage<T> {
+
     private Integer pageNum;
     private Integer pageSize;
+    @ApiModelProperty("总页数")
     private Integer totalPage;
+    @ApiModelProperty("总记录数")
     private Long total;
     private List<T> list;
 
-    /**
-     * 将PageHelper分页后的list转为分页信息
-     */
-    public static <T> CommonPage<T> restPage(List<T> list) {
-        CommonPage<T> result = new CommonPage<T>();
-        PageInfo<T> pageInfo = new PageInfo<T>(list);
-        result.setTotalPage(pageInfo.getPages());
-        result.setPageNum(pageInfo.getPageNum());
-        result.setPageSize(pageInfo.getPageSize());
-        result.setTotal(pageInfo.getTotal());
-        result.setList(pageInfo.getList());
-        return result;
+
+
+    public CommonPage(PageInfo<T> pageInfo) {
+
+        this.setTotalPage(pageInfo.getPages());
+        this.setPageNum(pageInfo.getPageNum());
+        this.setPageSize(pageInfo.getPageSize());
+        this.setTotal(pageInfo.getTotal());
+        this.setList(pageInfo.getList());
     }
 
-    /**
-     * 将SpringData分页后的list转为分页信息
-     */
-    public static <T> CommonPage<T> restPage(Page<T> pageInfo) {
-        CommonPage<T> result = new CommonPage<T>();
-        result.setTotalPage(pageInfo.getTotalPages());
-        result.setPageNum(pageInfo.getNumber());
-        result.setPageSize(pageInfo.getSize());
-        result.setTotal(pageInfo.getTotalElements());
-        result.setList(pageInfo.getContent());
-        return result;
+
+    public Long getTotal() {
+        return total;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
     }
 
     public Integer getPageNum() {
@@ -75,11 +73,5 @@ public class CommonPage<T> {
         this.list = list;
     }
 
-    public Long getTotal() {
-        return total;
-    }
 
-    public void setTotal(Long total) {
-        this.total = total;
-    }
 }

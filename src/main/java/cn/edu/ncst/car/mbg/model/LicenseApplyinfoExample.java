@@ -225,6 +225,126 @@ public class LicenseApplyinfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andImageConpanyIdIsNull() {
+            addCriterion("image_conpany_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageConpanyIdIsNotNull() {
+            addCriterion("image_conpany_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageConpanyIdEqualTo(Integer value) {
+            addCriterion("image_conpany_id =", value, "imageConpanyId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageConpanyIdNotEqualTo(Integer value) {
+            addCriterion("image_conpany_id <>", value, "imageConpanyId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageConpanyIdGreaterThan(Integer value) {
+            addCriterion("image_conpany_id >", value, "imageConpanyId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageConpanyIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("image_conpany_id >=", value, "imageConpanyId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageConpanyIdLessThan(Integer value) {
+            addCriterion("image_conpany_id <", value, "imageConpanyId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageConpanyIdLessThanOrEqualTo(Integer value) {
+            addCriterion("image_conpany_id <=", value, "imageConpanyId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageConpanyIdIn(List<Integer> values) {
+            addCriterion("image_conpany_id in", values, "imageConpanyId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageConpanyIdNotIn(List<Integer> values) {
+            addCriterion("image_conpany_id not in", values, "imageConpanyId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageConpanyIdBetween(Integer value1, Integer value2) {
+            addCriterion("image_conpany_id between", value1, value2, "imageConpanyId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageConpanyIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("image_conpany_id not between", value1, value2, "imageConpanyId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdIsNull() {
+            addCriterion("image_person_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdIsNotNull() {
+            addCriterion("image_person_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdEqualTo(Integer value) {
+            addCriterion("image_person_id =", value, "imagePersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdNotEqualTo(Integer value) {
+            addCriterion("image_person_id <>", value, "imagePersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdGreaterThan(Integer value) {
+            addCriterion("image_person_id >", value, "imagePersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("image_person_id >=", value, "imagePersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdLessThan(Integer value) {
+            addCriterion("image_person_id <", value, "imagePersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdLessThanOrEqualTo(Integer value) {
+            addCriterion("image_person_id <=", value, "imagePersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdIn(List<Integer> values) {
+            addCriterion("image_person_id in", values, "imagePersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdNotIn(List<Integer> values) {
+            addCriterion("image_person_id not in", values, "imagePersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdBetween(Integer value1, Integer value2) {
+            addCriterion("image_person_id between", value1, value2, "imagePersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePersonIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("image_person_id not between", value1, value2, "imagePersonId");
+            return (Criteria) this;
+        }
+
         public Criteria andPlateNoIsNull() {
             addCriterion("plate_no is null");
             return (Criteria) this;
@@ -235,52 +355,62 @@ public class LicenseApplyinfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPlateNoEqualTo(Integer value) {
+        public Criteria andPlateNoEqualTo(String value) {
             addCriterion("plate_no =", value, "plateNo");
             return (Criteria) this;
         }
 
-        public Criteria andPlateNoNotEqualTo(Integer value) {
+        public Criteria andPlateNoNotEqualTo(String value) {
             addCriterion("plate_no <>", value, "plateNo");
             return (Criteria) this;
         }
 
-        public Criteria andPlateNoGreaterThan(Integer value) {
+        public Criteria andPlateNoGreaterThan(String value) {
             addCriterion("plate_no >", value, "plateNo");
             return (Criteria) this;
         }
 
-        public Criteria andPlateNoGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPlateNoGreaterThanOrEqualTo(String value) {
             addCriterion("plate_no >=", value, "plateNo");
             return (Criteria) this;
         }
 
-        public Criteria andPlateNoLessThan(Integer value) {
+        public Criteria andPlateNoLessThan(String value) {
             addCriterion("plate_no <", value, "plateNo");
             return (Criteria) this;
         }
 
-        public Criteria andPlateNoLessThanOrEqualTo(Integer value) {
+        public Criteria andPlateNoLessThanOrEqualTo(String value) {
             addCriterion("plate_no <=", value, "plateNo");
             return (Criteria) this;
         }
 
-        public Criteria andPlateNoIn(List<Integer> values) {
+        public Criteria andPlateNoLike(String value) {
+            addCriterion("plate_no like", value, "plateNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateNoNotLike(String value) {
+            addCriterion("plate_no not like", value, "plateNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlateNoIn(List<String> values) {
             addCriterion("plate_no in", values, "plateNo");
             return (Criteria) this;
         }
 
-        public Criteria andPlateNoNotIn(List<Integer> values) {
+        public Criteria andPlateNoNotIn(List<String> values) {
             addCriterion("plate_no not in", values, "plateNo");
             return (Criteria) this;
         }
 
-        public Criteria andPlateNoBetween(Integer value1, Integer value2) {
+        public Criteria andPlateNoBetween(String value1, String value2) {
             addCriterion("plate_no between", value1, value2, "plateNo");
             return (Criteria) this;
         }
 
-        public Criteria andPlateNoNotBetween(Integer value1, Integer value2) {
+        public Criteria andPlateNoNotBetween(String value1, String value2) {
             addCriterion("plate_no not between", value1, value2, "plateNo");
             return (Criteria) this;
         }
@@ -705,52 +835,62 @@ public class LicenseApplyinfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdcardNoEqualTo(Integer value) {
+        public Criteria andIdcardNoEqualTo(String value) {
             addCriterion("idcard_no =", value, "idcardNo");
             return (Criteria) this;
         }
 
-        public Criteria andIdcardNoNotEqualTo(Integer value) {
+        public Criteria andIdcardNoNotEqualTo(String value) {
             addCriterion("idcard_no <>", value, "idcardNo");
             return (Criteria) this;
         }
 
-        public Criteria andIdcardNoGreaterThan(Integer value) {
+        public Criteria andIdcardNoGreaterThan(String value) {
             addCriterion("idcard_no >", value, "idcardNo");
             return (Criteria) this;
         }
 
-        public Criteria andIdcardNoGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIdcardNoGreaterThanOrEqualTo(String value) {
             addCriterion("idcard_no >=", value, "idcardNo");
             return (Criteria) this;
         }
 
-        public Criteria andIdcardNoLessThan(Integer value) {
+        public Criteria andIdcardNoLessThan(String value) {
             addCriterion("idcard_no <", value, "idcardNo");
             return (Criteria) this;
         }
 
-        public Criteria andIdcardNoLessThanOrEqualTo(Integer value) {
+        public Criteria andIdcardNoLessThanOrEqualTo(String value) {
             addCriterion("idcard_no <=", value, "idcardNo");
             return (Criteria) this;
         }
 
-        public Criteria andIdcardNoIn(List<Integer> values) {
+        public Criteria andIdcardNoLike(String value) {
+            addCriterion("idcard_no like", value, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoNotLike(String value) {
+            addCriterion("idcard_no not like", value, "idcardNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdcardNoIn(List<String> values) {
             addCriterion("idcard_no in", values, "idcardNo");
             return (Criteria) this;
         }
 
-        public Criteria andIdcardNoNotIn(List<Integer> values) {
+        public Criteria andIdcardNoNotIn(List<String> values) {
             addCriterion("idcard_no not in", values, "idcardNo");
             return (Criteria) this;
         }
 
-        public Criteria andIdcardNoBetween(Integer value1, Integer value2) {
+        public Criteria andIdcardNoBetween(String value1, String value2) {
             addCriterion("idcard_no between", value1, value2, "idcardNo");
             return (Criteria) this;
         }
 
-        public Criteria andIdcardNoNotBetween(Integer value1, Integer value2) {
+        public Criteria andIdcardNoNotBetween(String value1, String value2) {
             addCriterion("idcard_no not between", value1, value2, "idcardNo");
             return (Criteria) this;
         }

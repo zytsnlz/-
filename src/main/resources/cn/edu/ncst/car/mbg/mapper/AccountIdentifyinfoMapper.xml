@@ -7,16 +7,18 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="telephone" jdbcType="VARCHAR" property="telephone" />
     <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="id_card_image1" jdbcType="VARCHAR" property="idCardImage1" />
+    <result column="id_card_image2" jdbcType="VARCHAR" property="idCardImage2" />
     <result column="apply_createtime" jdbcType="TIMESTAMP" property="applyCreatetime" />
     <result column="deal_time" jdbcType="TIMESTAMP" property="dealTime" />
     <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="license_no" jdbcType="VARCHAR" property="licenseNo" />
+    <result column="license_image" jdbcType="VARCHAR" property="licenseImage" />
+    <result column="auth_image" jdbcType="VARCHAR" property="authImage" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="handler_id" jdbcType="INTEGER" property="handlerId" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.edu.ncst.car.mbg.model.AccountIdentifyinfo">
-    <result column="id_card_image1" jdbcType="LONGVARBINARY" property="idCardImage1" />
-    <result column="id_card_image2" jdbcType="LONGVARBINARY" property="idCardImage2" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -77,28 +79,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, name, telephone, id_card, apply_createtime, deal_time, user_type, comment, 
+    id, user_id, name, telephone, id_card, id_card_image1, id_card_image2, apply_createtime, 
+    deal_time, user_type, company_name, license_no, license_image, auth_image, comment, 
     status, handler_id
   </sql>
-  <sql id="Blob_Column_List">
-    id_card_image1, id_card_image2
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="cn.edu.ncst.car.mbg.model.AccountIdentifyinfoExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from account_identifyinfo
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="cn.edu.ncst.car.mbg.model.AccountIdentifyinfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -113,11 +97,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from account_identifyinfo
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -136,15 +118,17 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into account_identifyinfo (user_id, name, telephone, 
-      id_card, apply_createtime, deal_time, 
-      user_type, comment, status, 
-      handler_id, id_card_image1, id_card_image2
-      )
+      id_card, id_card_image1, id_card_image2, 
+      apply_createtime, deal_time, user_type, 
+      company_name, license_no, license_image, 
+      auth_image, comment, status, 
+      handler_id)
     values (#{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
-      #{idCard,jdbcType=VARCHAR}, #{applyCreatetime,jdbcType=TIMESTAMP}, #{dealTime,jdbcType=TIMESTAMP}, 
-      #{userType,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{handlerId,jdbcType=INTEGER}, #{idCardImage1,jdbcType=LONGVARBINARY}, #{idCardImage2,jdbcType=LONGVARBINARY}
-      )
+      #{idCard,jdbcType=VARCHAR}, #{idCardImage1,jdbcType=VARCHAR}, #{idCardImage2,jdbcType=VARCHAR}, 
+      #{applyCreatetime,jdbcType=TIMESTAMP}, #{dealTime,jdbcType=TIMESTAMP}, #{userType,jdbcType=INTEGER}, 
+      #{companyName,jdbcType=VARCHAR}, #{licenseNo,jdbcType=VARCHAR}, #{licenseImage,jdbcType=VARCHAR}, 
+      #{authImage,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{handlerId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.ncst.car.mbg.model.AccountIdentifyinfo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -164,6 +148,12 @@
       <if test="idCard != null">
         id_card,
       </if>
+      <if test="idCardImage1 != null">
+        id_card_image1,
+      </if>
+      <if test="idCardImage2 != null">
+        id_card_image2,
+      </if>
       <if test="applyCreatetime != null">
         apply_createtime,
       </if>
@@ -173,6 +163,18 @@
       <if test="userType != null">
         user_type,
       </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="licenseNo != null">
+        license_no,
+      </if>
+      <if test="licenseImage != null">
+        license_image,
+      </if>
+      <if test="authImage != null">
+        auth_image,
+      </if>
       <if test="comment != null">
         comment,
       </if>
@@ -181,12 +183,6 @@
       </if>
       <if test="handlerId != null">
         handler_id,
-      </if>
-      <if test="idCardImage1 != null">
-        id_card_image1,
-      </if>
-      <if test="idCardImage2 != null">
-        id_card_image2,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -202,6 +198,12 @@
       <if test="idCard != null">
         #{idCard,jdbcType=VARCHAR},
       </if>
+      <if test="idCardImage1 != null">
+        #{idCardImage1,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImage2 != null">
+        #{idCardImage2,jdbcType=VARCHAR},
+      </if>
       <if test="applyCreatetime != null">
         #{applyCreatetime,jdbcType=TIMESTAMP},
       </if>
@@ -211,6 +213,18 @@
       <if test="userType != null">
         #{userType,jdbcType=INTEGER},
       </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseNo != null">
+        #{licenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImage != null">
+        #{licenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="authImage != null">
+        #{authImage,jdbcType=VARCHAR},
+      </if>
       <if test="comment != null">
         #{comment,jdbcType=VARCHAR},
       </if>
@@ -219,12 +233,6 @@
       </if>
       <if test="handlerId != null">
         #{handlerId,jdbcType=INTEGER},
-      </if>
-      <if test="idCardImage1 != null">
-        #{idCardImage1,jdbcType=LONGVARBINARY},
-      </if>
-      <if test="idCardImage2 != null">
-        #{idCardImage2,jdbcType=LONGVARBINARY},
       </if>
     </trim>
   </insert>
@@ -252,6 +260,12 @@
       <if test="record.idCard != null">
         id_card = #{record.idCard,jdbcType=VARCHAR},
       </if>
+      <if test="record.idCardImage1 != null">
+        id_card_image1 = #{record.idCardImage1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardImage2 != null">
+        id_card_image2 = #{record.idCardImage2,jdbcType=VARCHAR},
+      </if>
       <if test="record.applyCreatetime != null">
         apply_createtime = #{record.applyCreatetime,jdbcType=TIMESTAMP},
       </if>
@@ -260,6 +274,18 @@
       </if>
       <if test="record.userType != null">
         user_type = #{record.userType,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyName != null">
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.licenseNo != null">
+        license_no = #{record.licenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.licenseImage != null">
+        license_image = #{record.licenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authImage != null">
+        auth_image = #{record.authImage,jdbcType=VARCHAR},
       </if>
       <if test="record.comment != null">
         comment = #{record.comment,jdbcType=VARCHAR},
@@ -270,32 +296,7 @@
       <if test="record.handlerId != null">
         handler_id = #{record.handlerId,jdbcType=INTEGER},
       </if>
-      <if test="record.idCardImage1 != null">
-        id_card_image1 = #{record.idCardImage1,jdbcType=LONGVARBINARY},
-      </if>
-      <if test="record.idCardImage2 != null">
-        id_card_image2 = #{record.idCardImage2,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update account_identifyinfo
-    set id = #{record.id,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      telephone = #{record.telephone,jdbcType=VARCHAR},
-      id_card = #{record.idCard,jdbcType=VARCHAR},
-      apply_createtime = #{record.applyCreatetime,jdbcType=TIMESTAMP},
-      deal_time = #{record.dealTime,jdbcType=TIMESTAMP},
-      user_type = #{record.userType,jdbcType=INTEGER},
-      comment = #{record.comment,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
-      handler_id = #{record.handlerId,jdbcType=INTEGER},
-      id_card_image1 = #{record.idCardImage1,jdbcType=LONGVARBINARY},
-      id_card_image2 = #{record.idCardImage2,jdbcType=LONGVARBINARY}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -307,9 +308,15 @@
       name = #{record.name,jdbcType=VARCHAR},
       telephone = #{record.telephone,jdbcType=VARCHAR},
       id_card = #{record.idCard,jdbcType=VARCHAR},
+      id_card_image1 = #{record.idCardImage1,jdbcType=VARCHAR},
+      id_card_image2 = #{record.idCardImage2,jdbcType=VARCHAR},
       apply_createtime = #{record.applyCreatetime,jdbcType=TIMESTAMP},
       deal_time = #{record.dealTime,jdbcType=TIMESTAMP},
       user_type = #{record.userType,jdbcType=INTEGER},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      license_no = #{record.licenseNo,jdbcType=VARCHAR},
+      license_image = #{record.licenseImage,jdbcType=VARCHAR},
+      auth_image = #{record.authImage,jdbcType=VARCHAR},
       comment = #{record.comment,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       handler_id = #{record.handlerId,jdbcType=INTEGER}
@@ -332,6 +339,12 @@
       <if test="idCard != null">
         id_card = #{idCard,jdbcType=VARCHAR},
       </if>
+      <if test="idCardImage1 != null">
+        id_card_image1 = #{idCardImage1,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImage2 != null">
+        id_card_image2 = #{idCardImage2,jdbcType=VARCHAR},
+      </if>
       <if test="applyCreatetime != null">
         apply_createtime = #{applyCreatetime,jdbcType=TIMESTAMP},
       </if>
@@ -340,6 +353,18 @@
       </if>
       <if test="userType != null">
         user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseNo != null">
+        license_no = #{licenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImage != null">
+        license_image = #{licenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="authImage != null">
+        auth_image = #{authImage,jdbcType=VARCHAR},
       </if>
       <if test="comment != null">
         comment = #{comment,jdbcType=VARCHAR},
@@ -350,29 +375,7 @@
       <if test="handlerId != null">
         handler_id = #{handlerId,jdbcType=INTEGER},
       </if>
-      <if test="idCardImage1 != null">
-        id_card_image1 = #{idCardImage1,jdbcType=LONGVARBINARY},
-      </if>
-      <if test="idCardImage2 != null">
-        id_card_image2 = #{idCardImage2,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.edu.ncst.car.mbg.model.AccountIdentifyinfo">
-    update account_identifyinfo
-    set user_id = #{userId,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      telephone = #{telephone,jdbcType=VARCHAR},
-      id_card = #{idCard,jdbcType=VARCHAR},
-      apply_createtime = #{applyCreatetime,jdbcType=TIMESTAMP},
-      deal_time = #{dealTime,jdbcType=TIMESTAMP},
-      user_type = #{userType,jdbcType=INTEGER},
-      comment = #{comment,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      handler_id = #{handlerId,jdbcType=INTEGER},
-      id_card_image1 = #{idCardImage1,jdbcType=LONGVARBINARY},
-      id_card_image2 = #{idCardImage2,jdbcType=LONGVARBINARY}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.edu.ncst.car.mbg.model.AccountIdentifyinfo">
@@ -381,9 +384,15 @@
       name = #{name,jdbcType=VARCHAR},
       telephone = #{telephone,jdbcType=VARCHAR},
       id_card = #{idCard,jdbcType=VARCHAR},
+      id_card_image1 = #{idCardImage1,jdbcType=VARCHAR},
+      id_card_image2 = #{idCardImage2,jdbcType=VARCHAR},
       apply_createtime = #{applyCreatetime,jdbcType=TIMESTAMP},
       deal_time = #{dealTime,jdbcType=TIMESTAMP},
       user_type = #{userType,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      license_no = #{licenseNo,jdbcType=VARCHAR},
+      license_image = #{licenseImage,jdbcType=VARCHAR},
+      auth_image = #{authImage,jdbcType=VARCHAR},
       comment = #{comment,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       handler_id = #{handlerId,jdbcType=INTEGER}

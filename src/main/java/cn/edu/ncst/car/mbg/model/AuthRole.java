@@ -14,15 +14,13 @@ public class AuthRole implements Serializable {
     private String description;
 
     @ApiModelProperty(value = "后台用户数量")
-    private Integer adminCount;
+    private Integer userCount;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
     @ApiModelProperty(value = "启用状态：0->禁用；1->启用")
     private Integer status;
-
-    private Integer sort;
 
     private static final long serialVersionUID = 1L;
 
@@ -50,12 +48,12 @@ public class AuthRole implements Serializable {
         this.description = description;
     }
 
-    public Integer getAdminCount() {
-        return adminCount;
+    public Integer getUserCount() {
+        return userCount;
     }
 
-    public void setAdminCount(Integer adminCount) {
-        this.adminCount = adminCount;
+    public void setUserCount(Integer userCount) {
+        this.userCount = userCount;
     }
 
     public Date getCreateTime() {
@@ -74,14 +72,6 @@ public class AuthRole implements Serializable {
         this.status = status;
     }
 
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -91,10 +81,9 @@ public class AuthRole implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", description=").append(description);
-        sb.append(", adminCount=").append(adminCount);
+        sb.append(", userCount=").append(userCount);
         sb.append(", createTime=").append(createTime);
         sb.append(", status=").append(status);
-        sb.append(", sort=").append(sort);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

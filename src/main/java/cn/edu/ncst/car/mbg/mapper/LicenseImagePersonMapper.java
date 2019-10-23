@@ -4,7 +4,9 @@ import cn.edu.ncst.car.mbg.model.LicenseImagePerson;
 import cn.edu.ncst.car.mbg.model.LicenseImagePersonExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface LicenseImagePersonMapper {
     long countByExample(LicenseImagePersonExample example);
 
@@ -16,21 +18,15 @@ public interface LicenseImagePersonMapper {
 
     int insertSelective(LicenseImagePerson record);
 
-    List<LicenseImagePerson> selectByExampleWithBLOBs(LicenseImagePersonExample example);
-
     List<LicenseImagePerson> selectByExample(LicenseImagePersonExample example);
 
     LicenseImagePerson selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") LicenseImagePerson record, @Param("example") LicenseImagePersonExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") LicenseImagePerson record, @Param("example") LicenseImagePersonExample example);
-
     int updateByExample(@Param("record") LicenseImagePerson record, @Param("example") LicenseImagePersonExample example);
 
     int updateByPrimaryKeySelective(LicenseImagePerson record);
-
-    int updateByPrimaryKeyWithBLOBs(LicenseImagePerson record);
 
     int updateByPrimaryKey(LicenseImagePerson record);
 }

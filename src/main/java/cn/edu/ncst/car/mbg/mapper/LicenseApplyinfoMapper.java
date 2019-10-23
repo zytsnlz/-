@@ -4,7 +4,9 @@ import cn.edu.ncst.car.mbg.model.LicenseApplyinfo;
 import cn.edu.ncst.car.mbg.model.LicenseApplyinfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface LicenseApplyinfoMapper {
     long countByExample(LicenseApplyinfoExample example);
 

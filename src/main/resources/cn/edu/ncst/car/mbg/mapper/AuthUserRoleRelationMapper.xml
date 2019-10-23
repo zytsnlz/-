@@ -3,7 +3,7 @@
 <mapper namespace="cn.edu.ncst.car.mbg.mapper.AuthUserRoleRelationMapper">
   <resultMap id="BaseResultMap" type="cn.edu.ncst.car.mbg.model.AuthUserRoleRelation">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="admin_id" jdbcType="BIGINT" property="adminId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, admin_id, role_id
+    id, user_id, role_id
   </sql>
   <select id="selectByExample" parameterType="cn.edu.ncst.car.mbg.model.AuthUserRoleRelationExample" resultMap="BaseResultMap">
     select
@@ -101,8 +101,8 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into auth_user_role_relation (admin_id, role_id)
-    values (#{adminId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT})
+    insert into auth_user_role_relation (user_id, role_id)
+    values (#{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.ncst.car.mbg.model.AuthUserRoleRelation">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -110,16 +110,16 @@
     </selectKey>
     insert into auth_user_role_relation
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="adminId != null">
-        admin_id,
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="roleId != null">
         role_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="adminId != null">
-        #{adminId,jdbcType=BIGINT},
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
       </if>
       <if test="roleId != null">
         #{roleId,jdbcType=BIGINT},
@@ -138,8 +138,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.adminId != null">
-        admin_id = #{record.adminId,jdbcType=BIGINT},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
       </if>
       <if test="record.roleId != null">
         role_id = #{record.roleId,jdbcType=BIGINT},
@@ -152,7 +152,7 @@
   <update id="updateByExample" parameterType="map">
     update auth_user_role_relation
     set id = #{record.id,jdbcType=BIGINT},
-      admin_id = #{record.adminId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
       role_id = #{record.roleId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -161,8 +161,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.edu.ncst.car.mbg.model.AuthUserRoleRelation">
     update auth_user_role_relation
     <set>
-      <if test="adminId != null">
-        admin_id = #{adminId,jdbcType=BIGINT},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
       </if>
       <if test="roleId != null">
         role_id = #{roleId,jdbcType=BIGINT},
@@ -172,7 +172,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.edu.ncst.car.mbg.model.AuthUserRoleRelation">
     update auth_user_role_relation
-    set admin_id = #{adminId,jdbcType=BIGINT},
+    set user_id = #{userId,jdbcType=BIGINT},
       role_id = #{roleId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>

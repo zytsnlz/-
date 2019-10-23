@@ -14,14 +14,17 @@ public class AuthUser implements Serializable {
     @ApiModelProperty(value = "头像")
     private String icon;
 
-    @ApiModelProperty(value = "邮箱")
-    private String email;
+    @ApiModelProperty(value = "备注")
+    private String note;
 
     @ApiModelProperty(value = "昵称")
     private String nickName;
 
-    @ApiModelProperty(value = "备注信息")
-    private String note;
+    @ApiModelProperty(value = "邮箱")
+    private String email;
+
+    @ApiModelProperty(value = "手机号")
+    private String telephone;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
@@ -29,7 +32,7 @@ public class AuthUser implements Serializable {
     @ApiModelProperty(value = "最后登录时间")
     private Date loginTime;
 
-    @ApiModelProperty(value = "帐号启用状态：0->禁用；1->启用")
+    @ApiModelProperty(value = "帐号认证状态：0->为通过或未审核；1->通过")
     private Integer status;
 
     private static final long serialVersionUID = 1L;
@@ -66,12 +69,12 @@ public class AuthUser implements Serializable {
         this.icon = icon;
     }
 
-    public String getEmail() {
-        return email;
+    public String getNote() {
+        return note;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public String getNickName() {
@@ -82,12 +85,20 @@ public class AuthUser implements Serializable {
         this.nickName = nickName;
     }
 
-    public String getNote() {
-        return note;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public Date getCreateTime() {
@@ -124,9 +135,10 @@ public class AuthUser implements Serializable {
         sb.append(", username=").append(username);
         sb.append(", password=").append(password);
         sb.append(", icon=").append(icon);
-        sb.append(", email=").append(email);
-        sb.append(", nickName=").append(nickName);
         sb.append(", note=").append(note);
+        sb.append(", nickName=").append(nickName);
+        sb.append(", email=").append(email);
+        sb.append(", telephone=").append(telephone);
         sb.append(", createTime=").append(createTime);
         sb.append(", loginTime=").append(loginTime);
         sb.append(", status=").append(status);

@@ -9,8 +9,12 @@ public class LicenseApplyinfo implements Serializable {
 
     private Integer userId;
 
+    private Integer imageConpanyId;
+
+    private Integer imagePersonId;
+
     @ApiModelProperty(value = "车牌号")
-    private Integer plateNo;
+    private String plateNo;
 
     @ApiModelProperty(value = "车牌类型")
     private String plateType;
@@ -31,7 +35,7 @@ public class LicenseApplyinfo implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "身份证号码")
-    private Integer idcardNo;
+    private String idcardNo;
 
     @ApiModelProperty(value = "申请日期")
     private Date applyCreatetime;
@@ -66,11 +70,27 @@ public class LicenseApplyinfo implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getPlateNo() {
+    public Integer getImageConpanyId() {
+        return imageConpanyId;
+    }
+
+    public void setImageConpanyId(Integer imageConpanyId) {
+        this.imageConpanyId = imageConpanyId;
+    }
+
+    public Integer getImagePersonId() {
+        return imagePersonId;
+    }
+
+    public void setImagePersonId(Integer imagePersonId) {
+        this.imagePersonId = imagePersonId;
+    }
+
+    public String getPlateNo() {
         return plateNo;
     }
 
-    public void setPlateNo(Integer plateNo) {
+    public void setPlateNo(String plateNo) {
         this.plateNo = plateNo;
     }
 
@@ -122,11 +142,11 @@ public class LicenseApplyinfo implements Serializable {
         this.name = name;
     }
 
-    public Integer getIdcardNo() {
+    public String getIdcardNo() {
         return idcardNo;
     }
 
-    public void setIdcardNo(Integer idcardNo) {
+    public void setIdcardNo(String idcardNo) {
         this.idcardNo = idcardNo;
     }
 
@@ -178,6 +198,8 @@ public class LicenseApplyinfo implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", userId=").append(userId);
+        sb.append(", imageConpanyId=").append(imageConpanyId);
+        sb.append(", imagePersonId=").append(imagePersonId);
         sb.append(", plateNo=").append(plateNo);
         sb.append(", plateType=").append(plateType);
         sb.append(", passLicenseType=").append(passLicenseType);

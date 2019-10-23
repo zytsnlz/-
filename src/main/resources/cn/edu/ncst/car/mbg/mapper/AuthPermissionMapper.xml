@@ -6,7 +6,6 @@
     <result column="pid" jdbcType="BIGINT" property="pid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="value" jdbcType="VARCHAR" property="value" />
-    <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="uri" jdbcType="VARCHAR" property="uri" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -72,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, pid, name, value, icon, type, uri, status, create_time, sort
+    id, pid, name, value, type, uri, status, create_time, sort
   </sql>
   <select id="selectByExample" parameterType="cn.edu.ncst.car.mbg.model.AuthPermissionExample" resultMap="BaseResultMap">
     select
@@ -109,10 +108,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into auth_permission (pid, name, value, 
-      icon, type, uri, status, 
+      type, uri, status, 
       create_time, sort)
     values (#{pid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
-      #{icon,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{uri,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{uri,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{sort,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.ncst.car.mbg.model.AuthPermission">
@@ -129,9 +128,6 @@
       </if>
       <if test="value != null">
         value,
-      </if>
-      <if test="icon != null">
-        icon,
       </if>
       <if test="type != null">
         type,
@@ -158,9 +154,6 @@
       </if>
       <if test="value != null">
         #{value,jdbcType=VARCHAR},
-      </if>
-      <if test="icon != null">
-        #{icon,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
@@ -200,9 +193,6 @@
       <if test="record.value != null">
         value = #{record.value,jdbcType=VARCHAR},
       </if>
-      <if test="record.icon != null">
-        icon = #{record.icon,jdbcType=VARCHAR},
-      </if>
       <if test="record.type != null">
         type = #{record.type,jdbcType=INTEGER},
       </if>
@@ -229,7 +219,6 @@
       pid = #{record.pid,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
       value = #{record.value,jdbcType=VARCHAR},
-      icon = #{record.icon,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=INTEGER},
       uri = #{record.uri,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
@@ -250,9 +239,6 @@
       </if>
       <if test="value != null">
         value = #{value,jdbcType=VARCHAR},
-      </if>
-      <if test="icon != null">
-        icon = #{icon,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         type = #{type,jdbcType=INTEGER},
@@ -277,7 +263,6 @@
     set pid = #{pid,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},
       value = #{value,jdbcType=VARCHAR},
-      icon = #{icon,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       uri = #{uri,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},

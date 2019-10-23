@@ -4,14 +4,7 @@
   <resultMap id="BaseResultMap" type="cn.edu.ncst.car.mbg.model.NoteLabel">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="label1" jdbcType="VARCHAR" property="label1" />
-    <result column="label2" jdbcType="VARCHAR" property="label2" />
-    <result column="label3" jdbcType="VARCHAR" property="label3" />
-    <result column="label4" jdbcType="VARCHAR" property="label4" />
-    <result column="label5" jdbcType="VARCHAR" property="label5" />
-    <result column="label6" jdbcType="VARCHAR" property="label6" />
-    <result column="label7" jdbcType="VARCHAR" property="label7" />
-    <result column="label8" jdbcType="VARCHAR" property="label8" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, label1, label2, label3, label4, label5, label6, label7, label8
+    id, user_id, label
   </sql>
   <select id="selectByExample" parameterType="cn.edu.ncst.car.mbg.model.NoteLabelExample" resultMap="BaseResultMap">
     select
@@ -108,14 +101,8 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into note_label (user_id, label1, label2, 
-      label3, label4, label5, 
-      label6, label7, label8
-      )
-    values (#{userId,jdbcType=INTEGER}, #{label1,jdbcType=VARCHAR}, #{label2,jdbcType=VARCHAR}, 
-      #{label3,jdbcType=VARCHAR}, #{label4,jdbcType=VARCHAR}, #{label5,jdbcType=VARCHAR}, 
-      #{label6,jdbcType=VARCHAR}, #{label7,jdbcType=VARCHAR}, #{label8,jdbcType=VARCHAR}
-      )
+    insert into note_label (user_id, label)
+    values (#{userId,jdbcType=INTEGER}, #{label,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.ncst.car.mbg.model.NoteLabel">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -126,58 +113,16 @@
       <if test="userId != null">
         user_id,
       </if>
-      <if test="label1 != null">
-        label1,
-      </if>
-      <if test="label2 != null">
-        label2,
-      </if>
-      <if test="label3 != null">
-        label3,
-      </if>
-      <if test="label4 != null">
-        label4,
-      </if>
-      <if test="label5 != null">
-        label5,
-      </if>
-      <if test="label6 != null">
-        label6,
-      </if>
-      <if test="label7 != null">
-        label7,
-      </if>
-      <if test="label8 != null">
-        label8,
+      <if test="label != null">
+        label,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="label1 != null">
-        #{label1,jdbcType=VARCHAR},
-      </if>
-      <if test="label2 != null">
-        #{label2,jdbcType=VARCHAR},
-      </if>
-      <if test="label3 != null">
-        #{label3,jdbcType=VARCHAR},
-      </if>
-      <if test="label4 != null">
-        #{label4,jdbcType=VARCHAR},
-      </if>
-      <if test="label5 != null">
-        #{label5,jdbcType=VARCHAR},
-      </if>
-      <if test="label6 != null">
-        #{label6,jdbcType=VARCHAR},
-      </if>
-      <if test="label7 != null">
-        #{label7,jdbcType=VARCHAR},
-      </if>
-      <if test="label8 != null">
-        #{label8,jdbcType=VARCHAR},
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -196,29 +141,8 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.label1 != null">
-        label1 = #{record.label1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.label2 != null">
-        label2 = #{record.label2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.label3 != null">
-        label3 = #{record.label3,jdbcType=VARCHAR},
-      </if>
-      <if test="record.label4 != null">
-        label4 = #{record.label4,jdbcType=VARCHAR},
-      </if>
-      <if test="record.label5 != null">
-        label5 = #{record.label5,jdbcType=VARCHAR},
-      </if>
-      <if test="record.label6 != null">
-        label6 = #{record.label6,jdbcType=VARCHAR},
-      </if>
-      <if test="record.label7 != null">
-        label7 = #{record.label7,jdbcType=VARCHAR},
-      </if>
-      <if test="record.label8 != null">
-        label8 = #{record.label8,jdbcType=VARCHAR},
+      <if test="record.label != null">
+        label = #{record.label,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -229,14 +153,7 @@
     update note_label
     set id = #{record.id,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
-      label1 = #{record.label1,jdbcType=VARCHAR},
-      label2 = #{record.label2,jdbcType=VARCHAR},
-      label3 = #{record.label3,jdbcType=VARCHAR},
-      label4 = #{record.label4,jdbcType=VARCHAR},
-      label5 = #{record.label5,jdbcType=VARCHAR},
-      label6 = #{record.label6,jdbcType=VARCHAR},
-      label7 = #{record.label7,jdbcType=VARCHAR},
-      label8 = #{record.label8,jdbcType=VARCHAR}
+      label = #{record.label,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -247,29 +164,8 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="label1 != null">
-        label1 = #{label1,jdbcType=VARCHAR},
-      </if>
-      <if test="label2 != null">
-        label2 = #{label2,jdbcType=VARCHAR},
-      </if>
-      <if test="label3 != null">
-        label3 = #{label3,jdbcType=VARCHAR},
-      </if>
-      <if test="label4 != null">
-        label4 = #{label4,jdbcType=VARCHAR},
-      </if>
-      <if test="label5 != null">
-        label5 = #{label5,jdbcType=VARCHAR},
-      </if>
-      <if test="label6 != null">
-        label6 = #{label6,jdbcType=VARCHAR},
-      </if>
-      <if test="label7 != null">
-        label7 = #{label7,jdbcType=VARCHAR},
-      </if>
-      <if test="label8 != null">
-        label8 = #{label8,jdbcType=VARCHAR},
+      <if test="label != null">
+        label = #{label,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -277,14 +173,7 @@
   <update id="updateByPrimaryKey" parameterType="cn.edu.ncst.car.mbg.model.NoteLabel">
     update note_label
     set user_id = #{userId,jdbcType=INTEGER},
-      label1 = #{label1,jdbcType=VARCHAR},
-      label2 = #{label2,jdbcType=VARCHAR},
-      label3 = #{label3,jdbcType=VARCHAR},
-      label4 = #{label4,jdbcType=VARCHAR},
-      label5 = #{label5,jdbcType=VARCHAR},
-      label6 = #{label6,jdbcType=VARCHAR},
-      label7 = #{label7,jdbcType=VARCHAR},
-      label8 = #{label8,jdbcType=VARCHAR}
+      label = #{label,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -8,7 +8,7 @@
                  LEFT JOIN auth_role r ON ar.role_id = r.id
                  LEFT JOIN auth_role_permission_relation rp ON r.id = rp.role_id
                  LEFT JOIN auth_permission p ON rp.permission_id = p.id
-        WHERE ar.admin_id = #{adminId}
+        WHERE ar.user_id = #{adminId}
           AND p.id IS NOT NULL
           AND p.id NOT IN (
             SELECT p.id

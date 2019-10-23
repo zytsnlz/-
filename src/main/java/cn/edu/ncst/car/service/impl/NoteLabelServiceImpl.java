@@ -23,7 +23,7 @@ public class NoteLabelServiceImpl implements NoteLabelService {
     public void deleteNoteLabel(String noteLabel, String userId) {
         NoteLabelExample noteLabelExample = new NoteLabelExample();
         NoteLabelExample.Criteria criteria = noteLabelExample.createCriteria();
-        criteria.andLabel1EqualTo(noteLabel);
+        criteria.andLabelEqualTo(noteLabel);
         criteria.andUserIdEqualTo(Integer.parseInt(userId));
         noteLabelMapper.deleteByExample(noteLabelExample);
     }
@@ -36,7 +36,7 @@ public class NoteLabelServiceImpl implements NoteLabelService {
         List<NoteLabel> noteLabels = noteLabelMapper.selectByExample(noteLabelExample);
         ArrayList<String> myNoteLabels = new ArrayList<>();
         for (int i = 0; i < noteLabels.size(); i++) {
-            myNoteLabels.add(noteLabels.get(i).getLabel1());
+            myNoteLabels.add(noteLabels.get(i).getLabel());
         }
         return myNoteLabels;
     }

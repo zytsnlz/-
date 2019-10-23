@@ -4,7 +4,9 @@ import cn.edu.ncst.car.mbg.model.NoteLabel;
 import cn.edu.ncst.car.mbg.model.NoteLabelExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface NoteLabelMapper {
     long countByExample(NoteLabelExample example);
 

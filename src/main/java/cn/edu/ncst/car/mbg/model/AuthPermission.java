@@ -16,9 +16,6 @@ public class AuthPermission implements Serializable {
     @ApiModelProperty(value = "权限值")
     private String value;
 
-    @ApiModelProperty(value = "图标")
-    private String icon;
-
     @ApiModelProperty(value = "权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）")
     private Integer type;
 
@@ -66,14 +63,6 @@ public class AuthPermission implements Serializable {
 
     public void setValue(String value) {
         this.value = value;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
     }
 
     public Integer getType() {
@@ -126,7 +115,6 @@ public class AuthPermission implements Serializable {
         sb.append(", pid=").append(pid);
         sb.append(", name=").append(name);
         sb.append(", value=").append(value);
-        sb.append(", icon=").append(icon);
         sb.append(", type=").append(type);
         sb.append(", uri=").append(uri);
         sb.append(", status=").append(status);

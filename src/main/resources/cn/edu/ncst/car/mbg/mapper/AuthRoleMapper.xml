@@ -5,10 +5,9 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="admin_count" jdbcType="INTEGER" property="adminCount" />
+    <result column="user_count" jdbcType="INTEGER" property="userCount" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="sort" jdbcType="INTEGER" property="sort" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, description, admin_count, create_time, status, sort
+    id, name, description, user_count, create_time, status
   </sql>
   <select id="selectByExample" parameterType="cn.edu.ncst.car.mbg.model.AuthRoleExample" resultMap="BaseResultMap">
     select
@@ -105,12 +104,10 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into auth_role (name, description, admin_count, 
-      create_time, status, sort
-      )
-    values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{adminCount,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}
-      )
+    insert into auth_role (name, description, user_count, 
+      create_time, status)
+    values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{userCount,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.ncst.car.mbg.model.AuthRole">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -124,17 +121,14 @@
       <if test="description != null">
         description,
       </if>
-      <if test="adminCount != null">
-        admin_count,
+      <if test="userCount != null">
+        user_count,
       </if>
       <if test="createTime != null">
         create_time,
       </if>
       <if test="status != null">
         status,
-      </if>
-      <if test="sort != null">
-        sort,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -144,17 +138,14 @@
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
-      <if test="adminCount != null">
-        #{adminCount,jdbcType=INTEGER},
+      <if test="userCount != null">
+        #{userCount,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
-      </if>
-      <if test="sort != null">
-        #{sort,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -176,17 +167,14 @@
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
       </if>
-      <if test="record.adminCount != null">
-        admin_count = #{record.adminCount,jdbcType=INTEGER},
+      <if test="record.userCount != null">
+        user_count = #{record.userCount,jdbcType=INTEGER},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
-      </if>
-      <if test="record.sort != null">
-        sort = #{record.sort,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -198,10 +186,9 @@
     set id = #{record.id,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
-      admin_count = #{record.adminCount,jdbcType=INTEGER},
+      user_count = #{record.userCount,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      status = #{record.status,jdbcType=INTEGER},
-      sort = #{record.sort,jdbcType=INTEGER}
+      status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -215,17 +202,14 @@
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="adminCount != null">
-        admin_count = #{adminCount,jdbcType=INTEGER},
+      <if test="userCount != null">
+        user_count = #{userCount,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="sort != null">
-        sort = #{sort,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -234,10 +218,9 @@
     update auth_role
     set name = #{name,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
-      admin_count = #{adminCount,jdbcType=INTEGER},
+      user_count = #{userCount,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=INTEGER},
-      sort = #{sort,jdbcType=INTEGER}
+      status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

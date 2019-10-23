@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class AuthUserRoleRelation implements Serializable {
     private Long id;
 
-    private Long adminId;
+    private Long userId;
 
     private Long roleId;
 
@@ -20,12 +20,12 @@ public class AuthUserRoleRelation implements Serializable {
         this.id = id;
     }
 
-    public Long getAdminId() {
-        return adminId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setAdminId(Long adminId) {
-        this.adminId = adminId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getRoleId() {
@@ -43,7 +43,7 @@ public class AuthUserRoleRelation implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", adminId=").append(adminId);
+        sb.append(", userId=").append(userId);
         sb.append(", roleId=").append(roleId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

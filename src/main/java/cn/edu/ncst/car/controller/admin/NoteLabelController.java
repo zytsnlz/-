@@ -41,7 +41,7 @@ public class NoteLabelController {
     public CommonResult addNoteLabelById(@RequestParam String id, @RequestParam String message){
         NoteLabel noteLabel = new NoteLabel();
         noteLabel.setUserId(Integer.parseInt(id));
-        noteLabel.setLabel1(message);
+        noteLabel.setLabel(message);
         try{
             noteLabelService.addNoteLabel(noteLabel);
         } catch (Exception e){

@@ -3,15 +3,12 @@
 <mapper namespace="cn.edu.ncst.car.mbg.mapper.LicenseImagePersonMapper">
   <resultMap id="BaseResultMap" type="cn.edu.ncst.car.mbg.model.LicenseImagePerson">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="applyInfo_id" jdbcType="INTEGER" property="applyinfoId" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.edu.ncst.car.mbg.model.LicenseImagePerson">
-    <result column="license_front" jdbcType="LONGVARBINARY" property="licenseFront" />
-    <result column="license_back" jdbcType="LONGVARBINARY" property="licenseBack" />
-    <result column="velicense_front" jdbcType="LONGVARBINARY" property="velicenseFront" />
-    <result column="velicense_back" jdbcType="LONGVARBINARY" property="velicenseBack" />
-    <result column="car_front" jdbcType="LONGVARBINARY" property="carFront" />
-    <result column="car_back" jdbcType="LONGVARBINARY" property="carBack" />
+    <result column="license_front" jdbcType="VARCHAR" property="licenseFront" />
+    <result column="license_back" jdbcType="VARCHAR" property="licenseBack" />
+    <result column="velicense_front" jdbcType="VARCHAR" property="velicenseFront" />
+    <result column="velicense_back" jdbcType="VARCHAR" property="velicenseBack" />
+    <result column="car_front" jdbcType="VARCHAR" property="carFront" />
+    <result column="car_back" jdbcType="VARCHAR" property="carBack" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,27 +69,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, applyInfo_id
+    id, license_front, license_back, velicense_front, velicense_back, car_front, car_back
   </sql>
-  <sql id="Blob_Column_List">
-    license_front, license_back, velicense_front, velicense_back, car_front, car_back
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="cn.edu.ncst.car.mbg.model.LicenseImagePersonExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from license_image_person
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="cn.edu.ncst.car.mbg.model.LicenseImagePersonExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -107,11 +85,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from license_image_person
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -129,13 +105,11 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into license_image_person (applyInfo_id, license_front, 
-      license_back, velicense_front, 
+    insert into license_image_person (license_front, license_back, velicense_front, 
       velicense_back, car_front, car_back
       )
-    values (#{applyinfoId,jdbcType=INTEGER}, #{licenseFront,jdbcType=LONGVARBINARY}, 
-      #{licenseBack,jdbcType=LONGVARBINARY}, #{velicenseFront,jdbcType=LONGVARBINARY}, 
-      #{velicenseBack,jdbcType=LONGVARBINARY}, #{carFront,jdbcType=LONGVARBINARY}, #{carBack,jdbcType=LONGVARBINARY}
+    values (#{licenseFront,jdbcType=VARCHAR}, #{licenseBack,jdbcType=VARCHAR}, #{velicenseFront,jdbcType=VARCHAR}, 
+      #{velicenseBack,jdbcType=VARCHAR}, #{carFront,jdbcType=VARCHAR}, #{carBack,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.ncst.car.mbg.model.LicenseImagePerson">
@@ -144,9 +118,6 @@
     </selectKey>
     insert into license_image_person
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="applyinfoId != null">
-        applyInfo_id,
-      </if>
       <if test="licenseFront != null">
         license_front,
       </if>
@@ -167,26 +138,23 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="applyinfoId != null">
-        #{applyinfoId,jdbcType=INTEGER},
-      </if>
       <if test="licenseFront != null">
-        #{licenseFront,jdbcType=LONGVARBINARY},
+        #{licenseFront,jdbcType=VARCHAR},
       </if>
       <if test="licenseBack != null">
-        #{licenseBack,jdbcType=LONGVARBINARY},
+        #{licenseBack,jdbcType=VARCHAR},
       </if>
       <if test="velicenseFront != null">
-        #{velicenseFront,jdbcType=LONGVARBINARY},
+        #{velicenseFront,jdbcType=VARCHAR},
       </if>
       <if test="velicenseBack != null">
-        #{velicenseBack,jdbcType=LONGVARBINARY},
+        #{velicenseBack,jdbcType=VARCHAR},
       </if>
       <if test="carFront != null">
-        #{carFront,jdbcType=LONGVARBINARY},
+        #{carFront,jdbcType=VARCHAR},
       </if>
       <if test="carBack != null">
-        #{carBack,jdbcType=LONGVARBINARY},
+        #{carBack,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -202,42 +170,25 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.applyinfoId != null">
-        applyInfo_id = #{record.applyinfoId,jdbcType=INTEGER},
-      </if>
       <if test="record.licenseFront != null">
-        license_front = #{record.licenseFront,jdbcType=LONGVARBINARY},
+        license_front = #{record.licenseFront,jdbcType=VARCHAR},
       </if>
       <if test="record.licenseBack != null">
-        license_back = #{record.licenseBack,jdbcType=LONGVARBINARY},
+        license_back = #{record.licenseBack,jdbcType=VARCHAR},
       </if>
       <if test="record.velicenseFront != null">
-        velicense_front = #{record.velicenseFront,jdbcType=LONGVARBINARY},
+        velicense_front = #{record.velicenseFront,jdbcType=VARCHAR},
       </if>
       <if test="record.velicenseBack != null">
-        velicense_back = #{record.velicenseBack,jdbcType=LONGVARBINARY},
+        velicense_back = #{record.velicenseBack,jdbcType=VARCHAR},
       </if>
       <if test="record.carFront != null">
-        car_front = #{record.carFront,jdbcType=LONGVARBINARY},
+        car_front = #{record.carFront,jdbcType=VARCHAR},
       </if>
       <if test="record.carBack != null">
-        car_back = #{record.carBack,jdbcType=LONGVARBINARY},
+        car_back = #{record.carBack,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update license_image_person
-    set id = #{record.id,jdbcType=INTEGER},
-      applyInfo_id = #{record.applyinfoId,jdbcType=INTEGER},
-      license_front = #{record.licenseFront,jdbcType=LONGVARBINARY},
-      license_back = #{record.licenseBack,jdbcType=LONGVARBINARY},
-      velicense_front = #{record.velicenseFront,jdbcType=LONGVARBINARY},
-      velicense_back = #{record.velicenseBack,jdbcType=LONGVARBINARY},
-      car_front = #{record.carFront,jdbcType=LONGVARBINARY},
-      car_back = #{record.carBack,jdbcType=LONGVARBINARY}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -245,7 +196,12 @@
   <update id="updateByExample" parameterType="map">
     update license_image_person
     set id = #{record.id,jdbcType=INTEGER},
-      applyInfo_id = #{record.applyinfoId,jdbcType=INTEGER}
+      license_front = #{record.licenseFront,jdbcType=VARCHAR},
+      license_back = #{record.licenseBack,jdbcType=VARCHAR},
+      velicense_front = #{record.velicenseFront,jdbcType=VARCHAR},
+      velicense_back = #{record.velicenseBack,jdbcType=VARCHAR},
+      car_front = #{record.carFront,jdbcType=VARCHAR},
+      car_back = #{record.carBack,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -253,44 +209,35 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.edu.ncst.car.mbg.model.LicenseImagePerson">
     update license_image_person
     <set>
-      <if test="applyinfoId != null">
-        applyInfo_id = #{applyinfoId,jdbcType=INTEGER},
-      </if>
       <if test="licenseFront != null">
-        license_front = #{licenseFront,jdbcType=LONGVARBINARY},
+        license_front = #{licenseFront,jdbcType=VARCHAR},
       </if>
       <if test="licenseBack != null">
-        license_back = #{licenseBack,jdbcType=LONGVARBINARY},
+        license_back = #{licenseBack,jdbcType=VARCHAR},
       </if>
       <if test="velicenseFront != null">
-        velicense_front = #{velicenseFront,jdbcType=LONGVARBINARY},
+        velicense_front = #{velicenseFront,jdbcType=VARCHAR},
       </if>
       <if test="velicenseBack != null">
-        velicense_back = #{velicenseBack,jdbcType=LONGVARBINARY},
+        velicense_back = #{velicenseBack,jdbcType=VARCHAR},
       </if>
       <if test="carFront != null">
-        car_front = #{carFront,jdbcType=LONGVARBINARY},
+        car_front = #{carFront,jdbcType=VARCHAR},
       </if>
       <if test="carBack != null">
-        car_back = #{carBack,jdbcType=LONGVARBINARY},
+        car_back = #{carBack,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.edu.ncst.car.mbg.model.LicenseImagePerson">
-    update license_image_person
-    set applyInfo_id = #{applyinfoId,jdbcType=INTEGER},
-      license_front = #{licenseFront,jdbcType=LONGVARBINARY},
-      license_back = #{licenseBack,jdbcType=LONGVARBINARY},
-      velicense_front = #{velicenseFront,jdbcType=LONGVARBINARY},
-      velicense_back = #{velicenseBack,jdbcType=LONGVARBINARY},
-      car_front = #{carFront,jdbcType=LONGVARBINARY},
-      car_back = #{carBack,jdbcType=LONGVARBINARY}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
   <update id="updateByPrimaryKey" parameterType="cn.edu.ncst.car.mbg.model.LicenseImagePerson">
     update license_image_person
-    set applyInfo_id = #{applyinfoId,jdbcType=INTEGER}
+    set license_front = #{licenseFront,jdbcType=VARCHAR},
+      license_back = #{licenseBack,jdbcType=VARCHAR},
+      velicense_front = #{velicenseFront,jdbcType=VARCHAR},
+      velicense_back = #{velicenseBack,jdbcType=VARCHAR},
+      car_front = #{carFront,jdbcType=VARCHAR},
+      car_back = #{carBack,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

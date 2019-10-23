@@ -4,7 +4,9 @@ import cn.edu.ncst.car.mbg.model.AuthUser;
 import cn.edu.ncst.car.mbg.model.AuthUserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AuthUserMapper {
     long countByExample(AuthUserExample example);
 

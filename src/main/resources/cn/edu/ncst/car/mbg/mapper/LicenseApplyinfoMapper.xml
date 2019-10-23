@@ -4,14 +4,16 @@
   <resultMap id="BaseResultMap" type="cn.edu.ncst.car.mbg.model.LicenseApplyinfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="plate_no" jdbcType="INTEGER" property="plateNo" />
+    <result column="image_conpany_id" jdbcType="INTEGER" property="imageConpanyId" />
+    <result column="image_person_id" jdbcType="INTEGER" property="imagePersonId" />
+    <result column="plate_no" jdbcType="VARCHAR" property="plateNo" />
     <result column="plate_type" jdbcType="VARCHAR" property="plateType" />
     <result column="pass_license_type" jdbcType="VARCHAR" property="passLicenseType" />
     <result column="apply_posit" jdbcType="VARCHAR" property="applyPosit" />
     <result column="apply_route" jdbcType="VARCHAR" property="applyRoute" />
     <result column="apply_date" jdbcType="TIMESTAMP" property="applyDate" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="idcard_no" jdbcType="INTEGER" property="idcardNo" />
+    <result column="idcard_no" jdbcType="VARCHAR" property="idcardNo" />
     <result column="apply_createtime" jdbcType="TIMESTAMP" property="applyCreatetime" />
     <result column="deal_time" jdbcType="TIMESTAMP" property="dealTime" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
@@ -77,8 +79,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, plate_no, plate_type, pass_license_type, apply_posit, apply_route, apply_date, 
-    name, idcard_no, apply_createtime, deal_time, comment, status, handler_id
+    id, user_id, image_conpany_id, image_person_id, plate_no, plate_type, pass_license_type, 
+    apply_posit, apply_route, apply_date, name, idcard_no, apply_createtime, deal_time, 
+    comment, status, handler_id
   </sql>
   <select id="selectByExample" parameterType="cn.edu.ncst.car.mbg.model.LicenseApplyinfoExample" resultMap="BaseResultMap">
     select
@@ -114,16 +117,18 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into license_applyinfo (user_id, plate_no, plate_type, 
-      pass_license_type, apply_posit, apply_route, 
-      apply_date, name, idcard_no, 
-      apply_createtime, deal_time, comment, 
-      status, handler_id)
-    values (#{userId,jdbcType=INTEGER}, #{plateNo,jdbcType=INTEGER}, #{plateType,jdbcType=VARCHAR}, 
-      #{passLicenseType,jdbcType=VARCHAR}, #{applyPosit,jdbcType=VARCHAR}, #{applyRoute,jdbcType=VARCHAR}, 
-      #{applyDate,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, #{idcardNo,jdbcType=INTEGER}, 
-      #{applyCreatetime,jdbcType=TIMESTAMP}, #{dealTime,jdbcType=TIMESTAMP}, #{comment,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{handlerId,jdbcType=INTEGER})
+    insert into license_applyinfo (user_id, image_conpany_id, image_person_id, 
+      plate_no, plate_type, pass_license_type, 
+      apply_posit, apply_route, apply_date, 
+      name, idcard_no, apply_createtime, 
+      deal_time, comment, status, 
+      handler_id)
+    values (#{userId,jdbcType=INTEGER}, #{imageConpanyId,jdbcType=INTEGER}, #{imagePersonId,jdbcType=INTEGER}, 
+      #{plateNo,jdbcType=VARCHAR}, #{plateType,jdbcType=VARCHAR}, #{passLicenseType,jdbcType=VARCHAR}, 
+      #{applyPosit,jdbcType=VARCHAR}, #{applyRoute,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=VARCHAR}, #{idcardNo,jdbcType=VARCHAR}, #{applyCreatetime,jdbcType=TIMESTAMP}, 
+      #{dealTime,jdbcType=TIMESTAMP}, #{comment,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{handlerId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.ncst.car.mbg.model.LicenseApplyinfo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -133,6 +138,12 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         user_id,
+      </if>
+      <if test="imageConpanyId != null">
+        image_conpany_id,
+      </if>
+      <if test="imagePersonId != null">
+        image_person_id,
       </if>
       <if test="plateNo != null">
         plate_no,
@@ -178,8 +189,14 @@
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
+      <if test="imageConpanyId != null">
+        #{imageConpanyId,jdbcType=INTEGER},
+      </if>
+      <if test="imagePersonId != null">
+        #{imagePersonId,jdbcType=INTEGER},
+      </if>
       <if test="plateNo != null">
-        #{plateNo,jdbcType=INTEGER},
+        #{plateNo,jdbcType=VARCHAR},
       </if>
       <if test="plateType != null">
         #{plateType,jdbcType=VARCHAR},
@@ -200,7 +217,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="idcardNo != null">
-        #{idcardNo,jdbcType=INTEGER},
+        #{idcardNo,jdbcType=VARCHAR},
       </if>
       <if test="applyCreatetime != null">
         #{applyCreatetime,jdbcType=TIMESTAMP},
@@ -234,8 +251,14 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.imageConpanyId != null">
+        image_conpany_id = #{record.imageConpanyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.imagePersonId != null">
+        image_person_id = #{record.imagePersonId,jdbcType=INTEGER},
+      </if>
       <if test="record.plateNo != null">
-        plate_no = #{record.plateNo,jdbcType=INTEGER},
+        plate_no = #{record.plateNo,jdbcType=VARCHAR},
       </if>
       <if test="record.plateType != null">
         plate_type = #{record.plateType,jdbcType=VARCHAR},
@@ -256,7 +279,7 @@
         name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.idcardNo != null">
-        idcard_no = #{record.idcardNo,jdbcType=INTEGER},
+        idcard_no = #{record.idcardNo,jdbcType=VARCHAR},
       </if>
       <if test="record.applyCreatetime != null">
         apply_createtime = #{record.applyCreatetime,jdbcType=TIMESTAMP},
@@ -282,14 +305,16 @@
     update license_applyinfo
     set id = #{record.id,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
-      plate_no = #{record.plateNo,jdbcType=INTEGER},
+      image_conpany_id = #{record.imageConpanyId,jdbcType=INTEGER},
+      image_person_id = #{record.imagePersonId,jdbcType=INTEGER},
+      plate_no = #{record.plateNo,jdbcType=VARCHAR},
       plate_type = #{record.plateType,jdbcType=VARCHAR},
       pass_license_type = #{record.passLicenseType,jdbcType=VARCHAR},
       apply_posit = #{record.applyPosit,jdbcType=VARCHAR},
       apply_route = #{record.applyRoute,jdbcType=VARCHAR},
       apply_date = #{record.applyDate,jdbcType=TIMESTAMP},
       name = #{record.name,jdbcType=VARCHAR},
-      idcard_no = #{record.idcardNo,jdbcType=INTEGER},
+      idcard_no = #{record.idcardNo,jdbcType=VARCHAR},
       apply_createtime = #{record.applyCreatetime,jdbcType=TIMESTAMP},
       deal_time = #{record.dealTime,jdbcType=TIMESTAMP},
       comment = #{record.comment,jdbcType=VARCHAR},
@@ -305,8 +330,14 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="imageConpanyId != null">
+        image_conpany_id = #{imageConpanyId,jdbcType=INTEGER},
+      </if>
+      <if test="imagePersonId != null">
+        image_person_id = #{imagePersonId,jdbcType=INTEGER},
+      </if>
       <if test="plateNo != null">
-        plate_no = #{plateNo,jdbcType=INTEGER},
+        plate_no = #{plateNo,jdbcType=VARCHAR},
       </if>
       <if test="plateType != null">
         plate_type = #{plateType,jdbcType=VARCHAR},
@@ -327,7 +358,7 @@
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="idcardNo != null">
-        idcard_no = #{idcardNo,jdbcType=INTEGER},
+        idcard_no = #{idcardNo,jdbcType=VARCHAR},
       </if>
       <if test="applyCreatetime != null">
         apply_createtime = #{applyCreatetime,jdbcType=TIMESTAMP},
@@ -350,14 +381,16 @@
   <update id="updateByPrimaryKey" parameterType="cn.edu.ncst.car.mbg.model.LicenseApplyinfo">
     update license_applyinfo
     set user_id = #{userId,jdbcType=INTEGER},
-      plate_no = #{plateNo,jdbcType=INTEGER},
+      image_conpany_id = #{imageConpanyId,jdbcType=INTEGER},
+      image_person_id = #{imagePersonId,jdbcType=INTEGER},
+      plate_no = #{plateNo,jdbcType=VARCHAR},
       plate_type = #{plateType,jdbcType=VARCHAR},
       pass_license_type = #{passLicenseType,jdbcType=VARCHAR},
       apply_posit = #{applyPosit,jdbcType=VARCHAR},
       apply_route = #{applyRoute,jdbcType=VARCHAR},
       apply_date = #{applyDate,jdbcType=TIMESTAMP},
       name = #{name,jdbcType=VARCHAR},
-      idcard_no = #{idcardNo,jdbcType=INTEGER},
+      idcard_no = #{idcardNo,jdbcType=VARCHAR},
       apply_createtime = #{applyCreatetime,jdbcType=TIMESTAMP},
       deal_time = #{dealTime,jdbcType=TIMESTAMP},
       comment = #{comment,jdbcType=VARCHAR},

@@ -164,63 +164,633 @@ public class LicenseImageCompanyExample {
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdIsNull() {
-            addCriterion("applyInfo_id is null");
+        public Criteria andLicenseFrontIsNull() {
+            addCriterion("license_front is null");
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdIsNotNull() {
-            addCriterion("applyInfo_id is not null");
+        public Criteria andLicenseFrontIsNotNull() {
+            addCriterion("license_front is not null");
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdEqualTo(Integer value) {
-            addCriterion("applyInfo_id =", value, "applyinfoId");
+        public Criteria andLicenseFrontEqualTo(String value) {
+            addCriterion("license_front =", value, "licenseFront");
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdNotEqualTo(Integer value) {
-            addCriterion("applyInfo_id <>", value, "applyinfoId");
+        public Criteria andLicenseFrontNotEqualTo(String value) {
+            addCriterion("license_front <>", value, "licenseFront");
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdGreaterThan(Integer value) {
-            addCriterion("applyInfo_id >", value, "applyinfoId");
+        public Criteria andLicenseFrontGreaterThan(String value) {
+            addCriterion("license_front >", value, "licenseFront");
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("applyInfo_id >=", value, "applyinfoId");
+        public Criteria andLicenseFrontGreaterThanOrEqualTo(String value) {
+            addCriterion("license_front >=", value, "licenseFront");
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdLessThan(Integer value) {
-            addCriterion("applyInfo_id <", value, "applyinfoId");
+        public Criteria andLicenseFrontLessThan(String value) {
+            addCriterion("license_front <", value, "licenseFront");
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdLessThanOrEqualTo(Integer value) {
-            addCriterion("applyInfo_id <=", value, "applyinfoId");
+        public Criteria andLicenseFrontLessThanOrEqualTo(String value) {
+            addCriterion("license_front <=", value, "licenseFront");
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdIn(List<Integer> values) {
-            addCriterion("applyInfo_id in", values, "applyinfoId");
+        public Criteria andLicenseFrontLike(String value) {
+            addCriterion("license_front like", value, "licenseFront");
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdNotIn(List<Integer> values) {
-            addCriterion("applyInfo_id not in", values, "applyinfoId");
+        public Criteria andLicenseFrontNotLike(String value) {
+            addCriterion("license_front not like", value, "licenseFront");
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdBetween(Integer value1, Integer value2) {
-            addCriterion("applyInfo_id between", value1, value2, "applyinfoId");
+        public Criteria andLicenseFrontIn(List<String> values) {
+            addCriterion("license_front in", values, "licenseFront");
             return (Criteria) this;
         }
 
-        public Criteria andApplyinfoIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("applyInfo_id not between", value1, value2, "applyinfoId");
+        public Criteria andLicenseFrontNotIn(List<String> values) {
+            addCriterion("license_front not in", values, "licenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseFrontBetween(String value1, String value2) {
+            addCriterion("license_front between", value1, value2, "licenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseFrontNotBetween(String value1, String value2) {
+            addCriterion("license_front not between", value1, value2, "licenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackIsNull() {
+            addCriterion("license_back is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackIsNotNull() {
+            addCriterion("license_back is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackEqualTo(String value) {
+            addCriterion("license_back =", value, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackNotEqualTo(String value) {
+            addCriterion("license_back <>", value, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackGreaterThan(String value) {
+            addCriterion("license_back >", value, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackGreaterThanOrEqualTo(String value) {
+            addCriterion("license_back >=", value, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackLessThan(String value) {
+            addCriterion("license_back <", value, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackLessThanOrEqualTo(String value) {
+            addCriterion("license_back <=", value, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackLike(String value) {
+            addCriterion("license_back like", value, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackNotLike(String value) {
+            addCriterion("license_back not like", value, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackIn(List<String> values) {
+            addCriterion("license_back in", values, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackNotIn(List<String> values) {
+            addCriterion("license_back not in", values, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackBetween(String value1, String value2) {
+            addCriterion("license_back between", value1, value2, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBackNotBetween(String value1, String value2) {
+            addCriterion("license_back not between", value1, value2, "licenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontIsNull() {
+            addCriterion("velicense_front is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontIsNotNull() {
+            addCriterion("velicense_front is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontEqualTo(String value) {
+            addCriterion("velicense_front =", value, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontNotEqualTo(String value) {
+            addCriterion("velicense_front <>", value, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontGreaterThan(String value) {
+            addCriterion("velicense_front >", value, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontGreaterThanOrEqualTo(String value) {
+            addCriterion("velicense_front >=", value, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontLessThan(String value) {
+            addCriterion("velicense_front <", value, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontLessThanOrEqualTo(String value) {
+            addCriterion("velicense_front <=", value, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontLike(String value) {
+            addCriterion("velicense_front like", value, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontNotLike(String value) {
+            addCriterion("velicense_front not like", value, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontIn(List<String> values) {
+            addCriterion("velicense_front in", values, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontNotIn(List<String> values) {
+            addCriterion("velicense_front not in", values, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontBetween(String value1, String value2) {
+            addCriterion("velicense_front between", value1, value2, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseFrontNotBetween(String value1, String value2) {
+            addCriterion("velicense_front not between", value1, value2, "velicenseFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackIsNull() {
+            addCriterion("velicense_back is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackIsNotNull() {
+            addCriterion("velicense_back is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackEqualTo(String value) {
+            addCriterion("velicense_back =", value, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackNotEqualTo(String value) {
+            addCriterion("velicense_back <>", value, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackGreaterThan(String value) {
+            addCriterion("velicense_back >", value, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackGreaterThanOrEqualTo(String value) {
+            addCriterion("velicense_back >=", value, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackLessThan(String value) {
+            addCriterion("velicense_back <", value, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackLessThanOrEqualTo(String value) {
+            addCriterion("velicense_back <=", value, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackLike(String value) {
+            addCriterion("velicense_back like", value, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackNotLike(String value) {
+            addCriterion("velicense_back not like", value, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackIn(List<String> values) {
+            addCriterion("velicense_back in", values, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackNotIn(List<String> values) {
+            addCriterion("velicense_back not in", values, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackBetween(String value1, String value2) {
+            addCriterion("velicense_back between", value1, value2, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andVelicenseBackNotBetween(String value1, String value2) {
+            addCriterion("velicense_back not between", value1, value2, "velicenseBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontIsNull() {
+            addCriterion("car_front is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontIsNotNull() {
+            addCriterion("car_front is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontEqualTo(String value) {
+            addCriterion("car_front =", value, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontNotEqualTo(String value) {
+            addCriterion("car_front <>", value, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontGreaterThan(String value) {
+            addCriterion("car_front >", value, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontGreaterThanOrEqualTo(String value) {
+            addCriterion("car_front >=", value, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontLessThan(String value) {
+            addCriterion("car_front <", value, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontLessThanOrEqualTo(String value) {
+            addCriterion("car_front <=", value, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontLike(String value) {
+            addCriterion("car_front like", value, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontNotLike(String value) {
+            addCriterion("car_front not like", value, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontIn(List<String> values) {
+            addCriterion("car_front in", values, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontNotIn(List<String> values) {
+            addCriterion("car_front not in", values, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontBetween(String value1, String value2) {
+            addCriterion("car_front between", value1, value2, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarFrontNotBetween(String value1, String value2) {
+            addCriterion("car_front not between", value1, value2, "carFront");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackIsNull() {
+            addCriterion("car_back is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackIsNotNull() {
+            addCriterion("car_back is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackEqualTo(String value) {
+            addCriterion("car_back =", value, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackNotEqualTo(String value) {
+            addCriterion("car_back <>", value, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackGreaterThan(String value) {
+            addCriterion("car_back >", value, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackGreaterThanOrEqualTo(String value) {
+            addCriterion("car_back >=", value, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackLessThan(String value) {
+            addCriterion("car_back <", value, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackLessThanOrEqualTo(String value) {
+            addCriterion("car_back <=", value, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackLike(String value) {
+            addCriterion("car_back like", value, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackNotLike(String value) {
+            addCriterion("car_back not like", value, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackIn(List<String> values) {
+            addCriterion("car_back in", values, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackNotIn(List<String> values) {
+            addCriterion("car_back not in", values, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackBetween(String value1, String value2) {
+            addCriterion("car_back between", value1, value2, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarBackNotBetween(String value1, String value2) {
+            addCriterion("car_back not between", value1, value2, "carBack");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIsNull() {
+            addCriterion("contract is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIsNotNull() {
+            addCriterion("contract is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractEqualTo(String value) {
+            addCriterion("contract =", value, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractNotEqualTo(String value) {
+            addCriterion("contract <>", value, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractGreaterThan(String value) {
+            addCriterion("contract >", value, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractGreaterThanOrEqualTo(String value) {
+            addCriterion("contract >=", value, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractLessThan(String value) {
+            addCriterion("contract <", value, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractLessThanOrEqualTo(String value) {
+            addCriterion("contract <=", value, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractLike(String value) {
+            addCriterion("contract like", value, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractNotLike(String value) {
+            addCriterion("contract not like", value, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIn(List<String> values) {
+            addCriterion("contract in", values, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractNotIn(List<String> values) {
+            addCriterion("contract not in", values, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractBetween(String value1, String value2) {
+            addCriterion("contract between", value1, value2, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractNotBetween(String value1, String value2) {
+            addCriterion("contract not between", value1, value2, "contract");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseAIsNull() {
+            addCriterion("license_A is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseAIsNotNull() {
+            addCriterion("license_A is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseAEqualTo(String value) {
+            addCriterion("license_A =", value, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseANotEqualTo(String value) {
+            addCriterion("license_A <>", value, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseAGreaterThan(String value) {
+            addCriterion("license_A >", value, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseAGreaterThanOrEqualTo(String value) {
+            addCriterion("license_A >=", value, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseALessThan(String value) {
+            addCriterion("license_A <", value, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseALessThanOrEqualTo(String value) {
+            addCriterion("license_A <=", value, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseALike(String value) {
+            addCriterion("license_A like", value, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseANotLike(String value) {
+            addCriterion("license_A not like", value, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseAIn(List<String> values) {
+            addCriterion("license_A in", values, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseANotIn(List<String> values) {
+            addCriterion("license_A not in", values, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseABetween(String value1, String value2) {
+            addCriterion("license_A between", value1, value2, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseANotBetween(String value1, String value2) {
+            addCriterion("license_A not between", value1, value2, "licenseA");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBIsNull() {
+            addCriterion("license_B is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBIsNotNull() {
+            addCriterion("license_B is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBEqualTo(String value) {
+            addCriterion("license_B =", value, "licenseB");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBNotEqualTo(String value) {
+            addCriterion("license_B <>", value, "licenseB");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBGreaterThan(String value) {
+            addCriterion("license_B >", value, "licenseB");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBGreaterThanOrEqualTo(String value) {
+            addCriterion("license_B >=", value, "licenseB");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBLessThan(String value) {
+            addCriterion("license_B <", value, "licenseB");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBLessThanOrEqualTo(String value) {
+            addCriterion("license_B <=", value, "licenseB");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBLike(String value) {
+            addCriterion("license_B like", value, "licenseB");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBNotLike(String value) {
+            addCriterion("license_B not like", value, "licenseB");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBIn(List<String> values) {
+            addCriterion("license_B in", values, "licenseB");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBNotIn(List<String> values) {
+            addCriterion("license_B not in", values, "licenseB");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBBetween(String value1, String value2) {
+            addCriterion("license_B between", value1, value2, "licenseB");
+            return (Criteria) this;
+        }
+
+        public Criteria andLicenseBNotBetween(String value1, String value2) {
+            addCriterion("license_B not between", value1, value2, "licenseB");
             return (Criteria) this;
         }
     }

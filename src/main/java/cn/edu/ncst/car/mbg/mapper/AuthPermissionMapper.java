@@ -4,7 +4,9 @@ import cn.edu.ncst.car.mbg.model.AuthPermission;
 import cn.edu.ncst.car.mbg.model.AuthPermissionExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AuthPermissionMapper {
     long countByExample(AuthPermissionExample example);
 

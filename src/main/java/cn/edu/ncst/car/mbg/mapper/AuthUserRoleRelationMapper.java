@@ -4,7 +4,9 @@ import cn.edu.ncst.car.mbg.model.AuthUserRoleRelation;
 import cn.edu.ncst.car.mbg.model.AuthUserRoleRelationExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AuthUserRoleRelationMapper {
     long countByExample(AuthUserRoleRelationExample example);
 

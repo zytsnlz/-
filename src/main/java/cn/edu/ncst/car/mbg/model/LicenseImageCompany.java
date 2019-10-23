@@ -6,34 +6,32 @@ import java.io.Serializable;
 public class LicenseImageCompany implements Serializable {
     private Integer id;
 
-    private Integer applyinfoId;
-
     @ApiModelProperty(value = "驾驶证正面照")
-    private byte[] licenseFront;
+    private String licenseFront;
 
     @ApiModelProperty(value = "驾驶证背面照")
-    private byte[] licenseBack;
+    private String licenseBack;
 
     @ApiModelProperty(value = "机动驾驶证正面")
-    private byte[] velicenseFront;
+    private String velicenseFront;
 
     @ApiModelProperty(value = "机动驾驶证背面")
-    private byte[] velicenseBack;
+    private String velicenseBack;
 
     @ApiModelProperty(value = "车辆正面照（有车牌）")
-    private byte[] carFront;
+    private String carFront;
 
     @ApiModelProperty(value = "车辆背面照")
-    private byte[] carBack;
+    private String carBack;
 
     @ApiModelProperty(value = "合同照片")
-    private byte[] contract;
+    private String contract;
 
     @ApiModelProperty(value = "甲方营业执照")
-    private byte[] licenseA;
+    private String licenseA;
 
     @ApiModelProperty(value = "乙方营业执照")
-    private byte[] licenseB;
+    private String licenseB;
 
     private static final long serialVersionUID = 1L;
 
@@ -45,83 +43,75 @@ public class LicenseImageCompany implements Serializable {
         this.id = id;
     }
 
-    public Integer getApplyinfoId() {
-        return applyinfoId;
-    }
-
-    public void setApplyinfoId(Integer applyinfoId) {
-        this.applyinfoId = applyinfoId;
-    }
-
-    public byte[] getLicenseFront() {
+    public String getLicenseFront() {
         return licenseFront;
     }
 
-    public void setLicenseFront(byte[] licenseFront) {
+    public void setLicenseFront(String licenseFront) {
         this.licenseFront = licenseFront;
     }
 
-    public byte[] getLicenseBack() {
+    public String getLicenseBack() {
         return licenseBack;
     }
 
-    public void setLicenseBack(byte[] licenseBack) {
+    public void setLicenseBack(String licenseBack) {
         this.licenseBack = licenseBack;
     }
 
-    public byte[] getVelicenseFront() {
+    public String getVelicenseFront() {
         return velicenseFront;
     }
 
-    public void setVelicenseFront(byte[] velicenseFront) {
+    public void setVelicenseFront(String velicenseFront) {
         this.velicenseFront = velicenseFront;
     }
 
-    public byte[] getVelicenseBack() {
+    public String getVelicenseBack() {
         return velicenseBack;
     }
 
-    public void setVelicenseBack(byte[] velicenseBack) {
+    public void setVelicenseBack(String velicenseBack) {
         this.velicenseBack = velicenseBack;
     }
 
-    public byte[] getCarFront() {
+    public String getCarFront() {
         return carFront;
     }
 
-    public void setCarFront(byte[] carFront) {
+    public void setCarFront(String carFront) {
         this.carFront = carFront;
     }
 
-    public byte[] getCarBack() {
+    public String getCarBack() {
         return carBack;
     }
 
-    public void setCarBack(byte[] carBack) {
+    public void setCarBack(String carBack) {
         this.carBack = carBack;
     }
 
-    public byte[] getContract() {
+    public String getContract() {
         return contract;
     }
 
-    public void setContract(byte[] contract) {
+    public void setContract(String contract) {
         this.contract = contract;
     }
 
-    public byte[] getLicenseA() {
+    public String getLicenseA() {
         return licenseA;
     }
 
-    public void setLicenseA(byte[] licenseA) {
+    public void setLicenseA(String licenseA) {
         this.licenseA = licenseA;
     }
 
-    public byte[] getLicenseB() {
+    public String getLicenseB() {
         return licenseB;
     }
 
-    public void setLicenseB(byte[] licenseB) {
+    public void setLicenseB(String licenseB) {
         this.licenseB = licenseB;
     }
 
@@ -132,7 +122,6 @@ public class LicenseImageCompany implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", applyinfoId=").append(applyinfoId);
         sb.append(", licenseFront=").append(licenseFront);
         sb.append(", licenseBack=").append(licenseBack);
         sb.append(", velicenseFront=").append(velicenseFront);
