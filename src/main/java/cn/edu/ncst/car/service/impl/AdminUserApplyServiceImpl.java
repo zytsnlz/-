@@ -55,5 +55,12 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
         return accountIdentifyinfos;
     }
 
+    @Override
+    public AccountIdentifyinfo selectOneApplyInfoById(Integer id) {
+
+        AccountIdentifyinfo identifyinfo = identifyinfoMapper.selectByPrimaryKey(id);
+        return identifyinfo;
+    }
+
 
 }

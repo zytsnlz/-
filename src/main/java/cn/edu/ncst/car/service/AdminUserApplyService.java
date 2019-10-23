@@ -1,6 +1,7 @@
 package cn.edu.ncst.car.service;
 
 import cn.edu.ncst.car.mbg.model.AccountIdentifyinfo;
+import io.swagger.models.auth.In;
 
 import java.util.List;
 
@@ -32,6 +33,10 @@ public interface AdminUserApplyService {
      */
     List<AccountIdentifyinfo> selectCompanyApply();
 
-
+    /**
+     * 根据account_identify表的id查看某个用户详细的认证申请信息
+     * @return
+     */
+    AccountIdentifyinfo selectOneApplyInfoById(Integer id);
 
 }

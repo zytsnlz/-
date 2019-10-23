@@ -4,6 +4,7 @@ package cn.edu.ncst.car.controller.admin;
 import cn.edu.ncst.car.common.api.CommonPage;
 import cn.edu.ncst.car.common.api.CommonResult;
 import cn.edu.ncst.car.mbg.model.AccountIdentifyinfo;
+import cn.edu.ncst.car.service.AdminUserApplyService;
 import cn.edu.ncst.car.service.PageInfoService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -19,6 +20,9 @@ public class UserApplyController {
 
     @Autowired
     private PageInfoService pageInfoService ;
+
+    @Autowired
+    private AdminUserApplyService applyService;
 
     /**
      * 获取所有的用户申请记录
@@ -84,7 +88,12 @@ public class UserApplyController {
         return CommonResult.success(commonPage);
 
     }
+    @ApiOperation("查看某个用户的具体申请")
+    @RequestMapping(value = "/apply/{id}",method = RequestMethod.GET)
+    public CommonResult<AccountIdentifyinfo> getOneApplyInfoById(@PathVariable(name = "id") Integer id ){
 
-
+        AccountIdentifyinfo identifyinfo = applyService.selectOneApplyInfoById(id);
+        return CommonResult.success(identifyinfo);
+    }
 
 }
