@@ -6,6 +6,7 @@ import cn.edu.ncst.car.common.api.CommonResult;
 import cn.edu.ncst.car.mbg.model.AccountIdentifyinfo;
 import cn.edu.ncst.car.service.AdminUserApplyService;
 import cn.edu.ncst.car.service.PageInfoService;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@Api(tags = "UserApplyController",description = "用户认证申请审核管理")
+@Api(tags = "UserApplyController",description = "查看用户认证申请")
 @RequestMapping("/admin")
 public class UserApplyController {
 
@@ -94,6 +95,16 @@ public class UserApplyController {
 
         AccountIdentifyinfo identifyinfo = applyService.selectOneApplyInfoById(id);
         return CommonResult.success(identifyinfo);
+    }
+    @ApiOperation("根据status筛选位未处理的申请(0)、已通过的申请(1)、未通过的申请(2)")
+    @RequestMapping(value = "/apply/filter",method = RequestMethod.GET)
+    public CommonResult<CommonPage> getApplyInfoByStatus(@RequestParam int pageNum, @RequestParam int pageSize,
+                                                                @RequestParam int status){
+        PageInfo<AccountIdentifyinfo> pageInfo = pageInfoService.byStatusApplyPageInfo(pageNum,pageSize,status);
+        CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
+        return CommonResult.success(commonPage);
+
+
     }
 
 }

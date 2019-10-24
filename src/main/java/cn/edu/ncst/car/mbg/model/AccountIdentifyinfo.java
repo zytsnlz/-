@@ -48,7 +48,7 @@ public class AccountIdentifyinfo implements Serializable {
     @ApiModelProperty(value = "审核反馈")
     private String comment;
 
-    @ApiModelProperty(value = "1-认证通过，0-认证未通过")
+    @ApiModelProperty(value = "1-认证审核通过，0-未审核，2-认证审核未通过")
     private Integer status;
 
     @ApiModelProperty(value = "处理该条申请记录的管理员")

@@ -38,7 +38,7 @@ public class UmsAdminController {
     public CommonResult<AuthUser> register(@RequestBody AuthUser umsAdminParam, BindingResult result) {
         AuthUser umsAdmin = adminService.register(umsAdminParam);
         if (umsAdmin == null) {
-            CommonResult.failed();
+            CommonResult.failed("用户有重名，需重新设置用户名");
         }
         return CommonResult.success(umsAdmin);
     }
@@ -60,7 +60,7 @@ public class UmsAdminController {
     @ApiOperation("获取用户所有权限（包括+-权限）")
     @RequestMapping(value = "/permission/{adminId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<AuthPermission>> getPermissionList(@PathVariable Long adminId) {
+    public CommonResult<List<AuthPermission>> getPermissionList(@PathVariable Integer adminId) {
         List<AuthPermission> permissionList = adminService.getPermissionList(adminId);
         return CommonResult.success(permissionList);
     }

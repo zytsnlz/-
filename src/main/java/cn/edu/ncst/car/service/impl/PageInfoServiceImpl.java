@@ -3,6 +3,7 @@ package cn.edu.ncst.car.service.impl;
 import cn.edu.ncst.car.mbg.model.AccountIdentifyinfo;
 import cn.edu.ncst.car.service.AdminUserApplyService;
 import cn.edu.ncst.car.service.PageInfoService;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,13 @@ public class PageInfoServiceImpl implements PageInfoService {
         PageInfo<AccountIdentifyinfo> pageInfo = new PageInfo<>(identifyinfos);
         return pageInfo;
 
+    }
+    @Override
+    public PageInfo<AccountIdentifyinfo> byStatusApplyPageInfo(int pageNum,int pageSize,Integer status){
+        PageHelper.startPage(pageNum,pageSize);
+        List<AccountIdentifyinfo> identifyinfos = userApplyService.selectByStatus(status);
+        PageInfo<AccountIdentifyinfo> pageInfo = new PageInfo<>(identifyinfos);
+        return pageInfo;
     }
 
 

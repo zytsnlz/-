@@ -30,5 +30,5 @@ public interface UmsAdminService {
     /**
      * 获取用户所有权限（包括角色权限和+-权限）
      */
-    List<AuthPermission> getPermissionList(Long adminId);
+    List<AuthPermission> getPermissionList(Integer adminId);
 }

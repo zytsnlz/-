@@ -39,4 +39,13 @@ public interface PageInfoService {
      * @return
      */
     PageInfo<AccountIdentifyinfo> byNameApplyPageInfo(int pageNum,int pageSize,String name);
+
+    /**
+     * 根据用户申请状态查询得到所有信息分页
+     * @param pageNum
+     * @param pageSize
+     * @param status
+     * @return
+     */
+    PageInfo<AccountIdentifyinfo> byStatusApplyPageInfo(int pageNum,int pageSize,Integer status);
 }

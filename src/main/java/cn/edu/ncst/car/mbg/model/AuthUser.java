@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class AuthUser implements Serializable {
-    private Long id;
+    private Integer id;
 
     private String username;
 
@@ -32,16 +32,16 @@ public class AuthUser implements Serializable {
     @ApiModelProperty(value = "最后登录时间")
     private Date loginTime;
 
-    @ApiModelProperty(value = "帐号认证状态：0->为通过或未审核；1->通过")
+    @ApiModelProperty(value = "帐号状态：0->禁用；1->启用；")
     private Integer status;
 
     private static final long serialVersionUID = 1L;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

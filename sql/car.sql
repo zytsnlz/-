@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50619
 File Encoding         : 65001
 
-Date: 2019-10-23 14:06:50
+Date: 2019-10-23 21:51:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,10 +35,10 @@ CREATE TABLE `account_identifyinfo` (
   `license_image` varchar(255) DEFAULT NULL COMMENT '营业执照照片',
   `auth_image` varchar(255) DEFAULT NULL COMMENT '单位申请书（盖公章）图片',
   `comment` varchar(255) DEFAULT NULL COMMENT '审核反馈',
-  `status` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '1-认证通过，0-认证未通过',
+  `status` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '1-认证审核通过，0-未审核，2-认证审核未通过',
   `handler_id` int(11) DEFAULT NULL COMMENT '处理该条申请记录的管理员',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for auth_permission
@@ -62,7 +62,7 @@ CREATE TABLE `auth_permission` (
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_role`;
 CREATE TABLE `auth_role` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL COMMENT '名称',
   `description` varchar(500) DEFAULT NULL COMMENT '描述',
   `user_count` int(11) DEFAULT NULL COMMENT '后台用户数量',
@@ -76,9 +76,9 @@ CREATE TABLE `auth_role` (
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_role_permission_relation`;
 CREATE TABLE `auth_role_permission_relation` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role_id` bigint(20) DEFAULT NULL,
-  `permission_id` bigint(20) DEFAULT NULL,
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `role_id` int(20) DEFAULT NULL,
+  `permission_id` int(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='后台用户角色和权限关系表';
 
@@ -87,7 +87,7 @@ CREATE TABLE `auth_role_permission_relation` (
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_user`;
 CREATE TABLE `auth_user` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(64) DEFAULT NULL,
   `password` varchar(64) DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL COMMENT '头像',
@@ -97,7 +97,7 @@ CREATE TABLE `auth_user` (
   `telephone` varchar(20) DEFAULT NULL COMMENT '手机号',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
-  `status` int(1) NOT NULL DEFAULT '1' COMMENT '帐号认证状态：0->为通过或为审核；1->通过',
+  `status` int(11) NOT NULL DEFAULT '1' COMMENT '帐号状态：0->禁用；1->启用；',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='后台用户表';
 
@@ -106,9 +106,9 @@ CREATE TABLE `auth_user` (
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_user_role_relation`;
 CREATE TABLE `auth_user_role_relation` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `role_id` bigint(20) DEFAULT NULL,
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `user_id` int(20) DEFAULT NULL,
+  `role_id` int(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='后台用户和角色关系表';
 
@@ -132,7 +132,7 @@ CREATE TABLE `license_applyinfo` (
   `apply_createtime` datetime DEFAULT NULL COMMENT '申请日期',
   `deal_time` datetime DEFAULT NULL COMMENT '后台管理处理日期',
   `comment` varchar(255) DEFAULT NULL COMMENT '审核反馈',
-  `status` int(11) NOT NULL DEFAULT '0' COMMENT '1-已处理，0-未处理',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '1-审核通过，0-未审核，2-审核未通过',
   `handler_id` int(11) DEFAULT NULL COMMENT '处理该申请记录的后台管理员',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;

@@ -46,7 +46,7 @@ public class LicenseApplyinfo implements Serializable {
     @ApiModelProperty(value = "审核反馈")
     private String comment;
 
-    @ApiModelProperty(value = "1-已处理，0-未处理")
+    @ApiModelProperty(value = "1-审核通过，0-未审核，2-审核未通过")
     private Integer status;
 
     @ApiModelProperty(value = "处理该申请记录的后台管理员")

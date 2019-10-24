@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class AuthRole implements Serializable {
-    private Long id;
+    private Integer id;
 
     @ApiModelProperty(value = "名称")
     private String name;
@@ -24,11 +24,11 @@ public class AuthRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

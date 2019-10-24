@@ -12,7 +12,7 @@ public interface AuthUserRoleRelationMapper {
 
     int deleteByExample(AuthUserRoleRelationExample example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(AuthUserRoleRelation record);
 
@@ -20,7 +20,7 @@ public interface AuthUserRoleRelationMapper {
 
     List<AuthUserRoleRelation> selectByExample(AuthUserRoleRelationExample example);
 
-    AuthUserRoleRelation selectByPrimaryKey(Long id);
+    AuthUserRoleRelation selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") AuthUserRoleRelation record, @Param("example") AuthUserRoleRelationExample example);
 

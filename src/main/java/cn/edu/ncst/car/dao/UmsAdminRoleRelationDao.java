@@ -17,5 +17,5 @@ public interface UmsAdminRoleRelationDao {
     /**
      * 获取用户所有权限(包括+-权限)
      */
-    List<AuthPermission> getPermissionList(@Param("adminId") Long adminId);
+    List<AuthPermission> getPermissionList(@Param("adminId") Integer adminId);
 }

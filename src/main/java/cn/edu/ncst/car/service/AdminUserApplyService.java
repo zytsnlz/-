@@ -22,6 +22,13 @@ public interface AdminUserApplyService {
     List<AccountIdentifyinfo> selectByName(String name);
 
     /**
+     * 根据状态码筛选位未处理的申请(0)、已通过的申请(1)、未通过的申请(2)
+     * @param status
+     * @return
+     */
+    List<AccountIdentifyinfo> selectByStatus(Integer status);
+
+    /**
      * 查询所有所有个人用户认证申请
      * @return
      */
@@ -38,5 +45,10 @@ public interface AdminUserApplyService {
      * @return
      */
     AccountIdentifyinfo selectOneApplyInfoById(Integer id);
+
+    /**
+     * 管理员审核某用户认证申请
+     */
+    void updateUserStatus(Integer id,Integer status,String comment,String token);
 
 }

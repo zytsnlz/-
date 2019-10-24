@@ -12,7 +12,7 @@ public interface AuthUserMapper {
 
     int deleteByExample(AuthUserExample example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(AuthUser record);
 
@@ -20,7 +20,7 @@ public interface AuthUserMapper {
 
     List<AuthUser> selectByExample(AuthUserExample example);
 
-    AuthUser selectByPrimaryKey(Long id);
+    AuthUser selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") AuthUser record, @Param("example") AuthUserExample example);
 
