@@ -1,5 +1,5 @@
 server:
-  port: 8080
+    port: 8080
 
 spring:
   datasource:
@@ -34,7 +34,22 @@ redis:
 
 # 自定义jwt key
 jwt:
-  tokenHeader: Authorization #JWT存储的请求头
-  secret: mySecret #JWT加解密使用的密钥
-  expiration: 604800 #JWT的超期限时间(60*60*24)
-  tokenHead: Bearer  #JWT负载中拿到开头
+    tokenHeader: Authorization #JWT存储的请求头
+    secret: mySecret #JWT加解密使用的密钥
+    expiration: 604800 #JWT的超期限时间(60*60*24)
+    tokenHead: Bearer  #JWT负载中拿到开头
+
+# 阿里云oss（对象存储）
+aliyun:
+    oss:
+        endpoint: oss-cn-beijing.aliyuncs.com
+        accessKeyId: test
+        accessKeySecret: test
+        bucketName: idongliming
+        policy:
+            expire: 300
+        maxSize: 10
+#       回调地址
+        callback: http://localhost:8080/aliyun/oss/callback
+        dir:
+            prefix: car/images/
