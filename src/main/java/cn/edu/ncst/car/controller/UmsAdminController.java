@@ -3,6 +3,7 @@ package cn.edu.ncst.car.controller;
 import cn.edu.ncst.car.dto.UmsAdminLoginParam;
 import cn.edu.ncst.car.mbg.model.AuthPermission;
 import cn.edu.ncst.car.mbg.model.AuthUser;
+import cn.edu.ncst.car.service.GetUserNameService;
 import cn.edu.ncst.car.service.UmsAdminService;
 import cn.edu.ncst.car.common.api.CommonResult;
 import io.swagger.annotations.Api;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -31,6 +33,8 @@ public class UmsAdminController {
     private String tokenHeader;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
+    @Autowired
+    private GetUserNameService userNameService;
 
     @ApiOperation(value = "用户注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -48,12 +52,14 @@ public class UmsAdminController {
     @ResponseBody
     public CommonResult login(@RequestBody UmsAdminLoginParam umsAdminLoginParam, BindingResult result) {
         String token = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
+        String userName = userNameService.getUserName(token);
         if (token == null) {
             return CommonResult.validateFailed("用户名或密码错误");
         }
         Map<String, String> tokenMap = new HashMap<>();
         tokenMap.put("token", token);
         tokenMap.put("tokenHead", tokenHead);
+        tokenMap.put("userName",userName);
         return CommonResult.success(tokenMap);
     }
 

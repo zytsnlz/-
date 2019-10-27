@@ -44,7 +44,6 @@
         <result column="license_B" jdbcType="VARCHAR" property="licenseImageCompany.licenseB" />
     </resultMap>
 
-
     <select id="selectByIdPerson" parameterType="int" resultMap="personMapper">
         select license_applyinfo.*,license_image_person.* from license_applyinfo,license_image_person
         where license_applyinfo.id = #{id} and license_applyinfo.image_person_id = license_image_person.id
