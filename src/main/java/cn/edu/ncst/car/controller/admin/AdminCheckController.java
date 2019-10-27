@@ -7,10 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
@@ -30,10 +27,9 @@ public class AdminCheckController {
     @ApiOperation("审核用户的认证申请信息")
     public CommonResult<String> checkApplyInfo(@RequestParam Integer id,
                                        @RequestParam @ApiParam(value = "管理员对用户的操作(1-审核通过，2-审核未通过)") Integer status,
-                                       @RequestParam @ApiParam(value = "管理员的反馈信息") String comment,
-                                       @RequestParam @ApiParam(value = "从token中获取当前处理该条申请的管理员") String token){
+                                       @RequestParam @ApiParam(value = "管理员的反馈信息") String comment){
 
-        applyService.updateUserStatus(id,status,comment,token);
+        applyService.updateUserStatus(id,status,comment);
         return CommonResult.success("审核成功");
 
     }
@@ -41,10 +37,9 @@ public class AdminCheckController {
     @RequestMapping(value = "/checkLicense",method = RequestMethod.POST)
     public CommonResult<String> checkLicenseInfo(@RequestParam Integer id,
                                  @RequestParam @ApiParam(value = "管理员对用户的操作(1-审核通过，2-审核未通过)") Integer status,
-                                 @RequestParam @ApiParam(value = "管理员的反馈信息") String comment,
-                                 @RequestParam @ApiParam(value = "从token中获取当前处理该条申请的管理员") String token){
+                                 @RequestParam @ApiParam(value = "管理员的反馈信息") String comment){
 
-        licenseApplyService.updateUserStatus(id,status,comment,token);
+        licenseApplyService.updateUserStatus(id,status,comment);
         return CommonResult.success("审核成功");
 
     }

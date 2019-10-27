@@ -12,6 +12,7 @@ import cn.edu.ncst.car.mbg.model.AuthUser;
 import cn.edu.ncst.car.mbg.model.AuthUserExample;
 import cn.edu.ncst.car.mbg.model.LicenseApplyinfo;
 import cn.edu.ncst.car.mbg.model.LicenseApplyinfoExample;
+import cn.edu.ncst.car.service.GetCurrentUserNameService;
 import cn.edu.ncst.car.service.UmsAdminService;
 import cn.edu.ncst.car.service.UpdateUserRoleByUid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,9 @@ public class AdminLicenseApplyServiceImpl implements cn.edu.ncst.car.service.Adm
 
     @Autowired
     UmsAdminService adminService;
+
+    @Autowired
+    GetCurrentUserNameService userNameService;
 
     @Override
     public List<MainLicenseApplyInfo> selectAll() {
@@ -110,11 +114,13 @@ public class AdminLicenseApplyServiceImpl implements cn.edu.ncst.car.service.Adm
     }
 
     @Override
-    public void updateUserStatus(Integer id, Integer status, String comment, String token) {
+    public void updateUserStatus(Integer id, Integer status, String comment) {
+
+        //获取当前登录管理员的用户名
+        String adminName = userNameService.getCurrentUserName();
 
         LicenseApplyinfo licenseApplyinfo = licenseApplyinfoMapper.selectByPrimaryKey(id);
-        //从token中获取当前处理该条记录的管理员的用户名
-        String adminName = tokenUtil.getUserNameFromToken(token);
+
         //获取管理员的id
         AuthUserExample example = new AuthUserExample();
         example.createCriteria().andUsernameEqualTo(adminName);

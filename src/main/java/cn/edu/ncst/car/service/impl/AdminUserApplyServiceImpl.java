@@ -5,9 +5,13 @@ import cn.edu.ncst.car.mbg.mapper.AccountIdentifyinfoMapper;
 import cn.edu.ncst.car.mbg.mapper.AuthUserRoleRelationMapper;
 import cn.edu.ncst.car.mbg.model.*;
 import cn.edu.ncst.car.service.AdminUserApplyService;
+import cn.edu.ncst.car.service.GetCurrentUserNameService;
 import cn.edu.ncst.car.service.UmsAdminService;
 import cn.edu.ncst.car.service.UpdateUserRoleByUid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -29,6 +33,8 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     AuthUserRoleRelationMapper userRoleRelationMapper;
     @Autowired
     UpdateUserRoleByUid updateUserRoleByUid;
+    @Autowired
+    GetCurrentUserNameService userNameService;
 
 
     @Override
@@ -93,11 +99,12 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     }
 
     @Override
-    public void updateUserStatus(Integer id,Integer status,String comment,String token) {
+    public void updateUserStatus(Integer id,Integer status,String comment) {
+
+        String adminName = userNameService.getCurrentUserName();
 
         AccountIdentifyinfo identifyinfo = identifyinfoMapper.selectByPrimaryKey(id);
-        //获取管理员的用户名
-        String adminName = tokenUtil.getUserNameFromToken(token);
+
         //获取管理员的id
         AuthUserExample example = new AuthUserExample();
         example.createCriteria().andUsernameEqualTo(adminName);

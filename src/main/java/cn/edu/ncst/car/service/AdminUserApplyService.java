@@ -49,6 +49,6 @@ public interface AdminUserApplyService {
     /**
      * 管理员审核某用户认证申请
      */
-    void updateUserStatus(Integer id,Integer status,String comment,String token);
+    void updateUserStatus(Integer id,Integer status,String comment);
 
 }
