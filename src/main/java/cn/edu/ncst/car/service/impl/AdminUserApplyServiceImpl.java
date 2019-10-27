@@ -96,14 +96,14 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     public void updateUserStatus(Integer id,Integer status,String comment,String token) {
 
         AccountIdentifyinfo identifyinfo = identifyinfoMapper.selectByPrimaryKey(id);
-
+        //获取管理员的用户名
         String adminName = tokenUtil.getUserNameFromToken(token);
-
+        //获取管理员的id
         AuthUserExample example = new AuthUserExample();
         example.createCriteria().andUsernameEqualTo(adminName);
         AuthUser authUser = adminService.getAdminByUsername(adminName);
+        //记录处理该条申请记录的管理员的id
         identifyinfo.setHandlerId(authUser.getId());
-
         identifyinfo.setComment(comment);
         Timestamp ts = new Timestamp(new Date().getTime());
         identifyinfo.setDealTime(ts);
