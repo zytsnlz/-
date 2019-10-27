@@ -5,8 +5,7 @@ import cn.edu.ncst.car.common.api.CommonPage;
 import cn.edu.ncst.car.common.api.CommonResult;
 import cn.edu.ncst.car.mbg.model.AccountIdentifyinfo;
 import cn.edu.ncst.car.service.AdminUserApplyService;
-import cn.edu.ncst.car.service.PageInfoService;
-import com.github.pagehelper.Page;
+import cn.edu.ncst.car.service.UserPageInfoService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserApplyController {
 
     @Autowired
-    private PageInfoService pageInfoService ;
+    private UserPageInfoService userPageInfoService;
 
     @Autowired
     private AdminUserApplyService applyService;
@@ -35,7 +34,7 @@ public class UserApplyController {
     @RequestMapping(value = "/apply",method = RequestMethod.GET)
     public CommonResult<CommonPage> getAllUserApply(@RequestParam int pageNum, @RequestParam int pageSize){
 
-        PageInfo<AccountIdentifyinfo> pageInfo = pageInfoService.userApplyPageInfo(pageNum,pageSize);
+        PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.userApplyPageInfo(pageNum,pageSize);
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
         return CommonResult.success(commonPage);
     }
@@ -52,7 +51,7 @@ public class UserApplyController {
     public CommonResult<CommonPage> getUserApplyByName( @RequestParam int pageNum, @RequestParam int pageSize,
                                                        @RequestParam String name){
 
-        PageInfo<AccountIdentifyinfo> pageInfo = pageInfoService.byNameApplyPageInfo(pageNum, pageSize, name);
+        PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.byNameApplyPageInfo(pageNum, pageSize, name);
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
         return CommonResult.success(commonPage);
 
@@ -68,7 +67,7 @@ public class UserApplyController {
     @RequestMapping(value = "/apply/user",method = RequestMethod.GET)
     public CommonResult<CommonPage> getPersonApply(@RequestParam int pageNum,@RequestParam int pageSize){
 
-        PageInfo<AccountIdentifyinfo> pageInfo = pageInfoService.personApplyPageInfo(pageNum,pageSize);
+        PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.personApplyPageInfo(pageNum,pageSize);
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
         return CommonResult.success(commonPage);
 
@@ -84,7 +83,7 @@ public class UserApplyController {
     @RequestMapping(value = "/apply/company",method = RequestMethod.GET)
     public CommonResult<CommonPage> getCompanyApply(@RequestParam int pageNum,@RequestParam int pageSize){
 
-        PageInfo<AccountIdentifyinfo> pageInfo = pageInfoService.componyApplyPageInfo(pageNum,pageSize);
+        PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.componyApplyPageInfo(pageNum,pageSize);
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
         return CommonResult.success(commonPage);
 
@@ -100,7 +99,7 @@ public class UserApplyController {
     @RequestMapping(value = "/apply/filter",method = RequestMethod.GET)
     public CommonResult<CommonPage> getApplyInfoByStatus(@RequestParam int pageNum, @RequestParam int pageSize,
                                                                 @RequestParam int status){
-        PageInfo<AccountIdentifyinfo> pageInfo = pageInfoService.byStatusApplyPageInfo(pageNum,pageSize,status);
+        PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.byStatusApplyPageInfo(pageNum,pageSize,status);
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
         return CommonResult.success(commonPage);
 

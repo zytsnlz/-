@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ncst.car.dao.MainLicenseApplyIDao">
+
+    <resultMap id="MainLicenseApplyMap" type="cn.edu.ncst.car.dto.MainLicenseApplyInfo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="pass_license_type" jdbcType="VARCHAR" property="passLicenseType" />
+        <result column="role_id" javaType="INTEGER" property="user_type"></result>
+        <result column="start_position" jdbcType="VARCHAR" property="startPosition" />
+        <result column="end_position" jdbcType="VARCHAR" property="endPosition" />
+        <result column="apply_route" jdbcType="VARCHAR" property="applyRoute" />
+        <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+        <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="plate_no" jdbcType="VARCHAR" property="plateNo" />
+        <result column="plate_type" jdbcType="VARCHAR" property="plateType" />
+        <result column="apply_createtime" jdbcType="TIMESTAMP" property="applyCreatetime" />
+    </resultMap>
+    <select id="selectAll"  resultMap="MainLicenseApplyMap">
+        select license_applyinfo.*,auth_user_role_relation.role_id from license_applyinfo,auth_user_role_relation
+        where license_applyinfo.user_id = auth_user_role_relation.user_id order by license_applyinfo.id desc
+    </select>
+    <select id="selectByStatus" resultMap="MainLicenseApplyMap" parameterType="int">
+        select license_applyinfo.*,auth_user_role_relation.role_id from license_applyinfo,auth_user_role_relation
+         where status = #{status} And license_applyinfo.user_id = auth_user_role_relation.user_id order by license_applyinfo.id desc
+    </select>
+    <select id="selectByPlateNo" resultMap="MainLicenseApplyMap" parameterType="string">
+        select license_applyinfo.*,auth_user_role_relation.role_id from license_applyinfo,auth_user_role_relation
+        where plate_no = #{plateNo} And license_applyinfo.user_id = auth_user_role_relation.user_id order by license_applyinfo.id desc
+    </select>
+    <select id="selectCompanyLicense" resultMap="MainLicenseApplyMap">
+         select  license_applyinfo.*,auth_user_role_relation.role_id from license_applyinfo,auth_user_role_relation
+        where role_id = 1 and license_applyinfo.user_id = auth_user_role_relation.user_id order by license_applyinfo.id desc
+    </select>
+    <select id="selectPersonLicense" resultMap="MainLicenseApplyMap">
+        select  license_applyinfo.*,auth_user_role_relation.role_id from license_applyinfo,auth_user_role_relation
+        where role_id = 0 and license_applyinfo.user_id = auth_user_role_relation.user_id order by license_applyinfo.id desc
+    </select>
+
+</mapper>

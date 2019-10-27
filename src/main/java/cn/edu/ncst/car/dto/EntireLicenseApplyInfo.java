@@ -1,10 +1,20 @@
-package cn.edu.ncst.car.mbg.model;
+package cn.edu.ncst.car.dto;
 
+import cn.edu.ncst.car.mbg.model.LicenseImageCompany;
+import cn.edu.ncst.car.mbg.model.LicenseImagePerson;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
+
 import java.util.Date;
 
-public class LicenseApplyinfo implements Serializable {
+public class EntireLicenseApplyInfo {
+
+    @ApiModelProperty(value = "单位通行证申请需要的证件图片信息")
+    private LicenseImageCompany licenseImageCompany;
+
+    @ApiModelProperty(value = "个人通行证所需要的证件图片信息")
+    private LicenseImagePerson licenseImagePerson;
+
     private Integer id;
 
     private Integer userId;
@@ -31,9 +41,10 @@ public class LicenseApplyinfo implements Serializable {
     @ApiModelProperty(value = "申请路线")
     private String applyRoute;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @ApiModelProperty(value = "开始日期")
     private Date startDate;
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @ApiModelProperty(value = "结束日期")
     private Date endDate;
 
@@ -43,6 +54,7 @@ public class LicenseApplyinfo implements Serializable {
     @ApiModelProperty(value = "身份证号码")
     private String driverIdcardNo;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @ApiModelProperty(value = "申请日期")
     private Date applyCreatetime;
 
@@ -57,6 +69,22 @@ public class LicenseApplyinfo implements Serializable {
 
     @ApiModelProperty(value = "处理该申请记录的后台管理员")
     private Integer handlerId;
+
+    public LicenseImageCompany getLicenseImageCompany() {
+        return licenseImageCompany;
+    }
+
+    public void setLicenseImageCompany(LicenseImageCompany licenseImageCompany) {
+        this.licenseImageCompany = licenseImageCompany;
+    }
+
+    public LicenseImagePerson getLicenseImagePerson() {
+        return licenseImagePerson;
+    }
+
+    public void setLicenseImagePerson(LicenseImagePerson licenseImagePerson) {
+        this.licenseImagePerson = licenseImagePerson;
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -214,31 +242,28 @@ public class LicenseApplyinfo implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", userId=").append(userId);
-        sb.append(", imageCompanyId=").append(imageCompanyId);
-        sb.append(", imagePersonId=").append(imagePersonId);
-        sb.append(", plateNo=").append(plateNo);
-        sb.append(", plateType=").append(plateType);
-        sb.append(", passLicenseType=").append(passLicenseType);
-        sb.append(", startPosition=").append(startPosition);
-        sb.append(", endPosition=").append(endPosition);
-        sb.append(", applyRoute=").append(applyRoute);
-        sb.append(", startDate=").append(startDate);
-        sb.append(", endDate=").append(endDate);
-        sb.append(", driverName=").append(driverName);
-        sb.append(", driverIdcardNo=").append(driverIdcardNo);
-        sb.append(", applyCreatetime=").append(applyCreatetime);
-        sb.append(", dealTime=").append(dealTime);
-        sb.append(", comment=").append(comment);
-        sb.append(", status=").append(status);
-        sb.append(", handlerId=").append(handlerId);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "EntireLicenseApplyInfo{" +
+                "licenseImageCompany=" + licenseImageCompany +
+                ", licenseImagePerson=" + licenseImagePerson +
+                ", id=" + id +
+                ", userId=" + userId +
+                ", imageConpanyId=" + imageCompanyId +
+                ", imagePersonId=" + imagePersonId +
+                ", plateNo='" + plateNo + '\'' +
+                ", plateType='" + plateType + '\'' +
+                ", passLicenseType='" + passLicenseType + '\'' +
+                ", startPosition='" + startPosition + '\'' +
+                ", endPosition='" + endPosition + '\'' +
+                ", applyRoute='" + applyRoute + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", driverName='" + driverName + '\'' +
+                ", driverIdcardNo='" + driverIdcardNo + '\'' +
+                ", applyCreatetime=" + applyCreatetime +
+                ", dealTime=" + dealTime +
+                ", comment='" + comment + '\'' +
+                ", status=" + status +
+                ", handlerId=" + handlerId +
+                '}';
     }
 }

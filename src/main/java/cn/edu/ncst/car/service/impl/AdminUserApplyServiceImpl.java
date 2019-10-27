@@ -2,12 +2,11 @@ package cn.edu.ncst.car.service.impl;
 
 import cn.edu.ncst.car.common.utils.JwtTokenUtil;
 import cn.edu.ncst.car.mbg.mapper.AccountIdentifyinfoMapper;
-import cn.edu.ncst.car.mbg.model.AccountIdentifyinfo;
-import cn.edu.ncst.car.mbg.model.AccountIdentifyinfoExample;
-import cn.edu.ncst.car.mbg.model.AuthUser;
-import cn.edu.ncst.car.mbg.model.AuthUserExample;
+import cn.edu.ncst.car.mbg.mapper.AuthUserRoleRelationMapper;
+import cn.edu.ncst.car.mbg.model.*;
 import cn.edu.ncst.car.service.AdminUserApplyService;
 import cn.edu.ncst.car.service.UmsAdminService;
+import cn.edu.ncst.car.service.UpdateUserRoleByUid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +25,17 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     AdminUserApplyServiceImpl adminUserApplyService;
     @Autowired
     UmsAdminService adminService;
+    @Autowired
+    AuthUserRoleRelationMapper userRoleRelationMapper;
+    @Autowired
+    UpdateUserRoleByUid updateUserRoleByUid;
 
 
     @Override
     public List<AccountIdentifyinfo> selectAll() {
 
         AccountIdentifyinfoExample identifyinfoExample = new AccountIdentifyinfoExample();
+        identifyinfoExample.setOrderByClause("id desc");
         AccountIdentifyinfoExample.Criteria criteria = identifyinfoExample.createCriteria();
         List<AccountIdentifyinfo> identifyinfos = identifyinfoMapper.selectByExample(identifyinfoExample);
         return identifyinfos;
@@ -41,6 +45,7 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     public List<AccountIdentifyinfo> selectByName(String name) {
 
         AccountIdentifyinfoExample identifyinfoExample = new AccountIdentifyinfoExample();
+        identifyinfoExample.setOrderByClause("id desc");
         AccountIdentifyinfoExample.Criteria criteria = identifyinfoExample.createCriteria();
         criteria.andNameEqualTo(name);
         List<AccountIdentifyinfo> identifyinfos = identifyinfoMapper.selectByExample(identifyinfoExample);
@@ -51,6 +56,7 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     public List<AccountIdentifyinfo> selectByStatus(Integer status) {
 
         AccountIdentifyinfoExample identifyinfoExample = new AccountIdentifyinfoExample();
+        identifyinfoExample.setOrderByClause("id desc");
         AccountIdentifyinfoExample.Criteria criteria = identifyinfoExample.createCriteria();
         criteria.andStatusEqualTo(status);
         List<AccountIdentifyinfo> identifyinfos = identifyinfoMapper.selectByExample(identifyinfoExample);
@@ -61,6 +67,7 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     public List<AccountIdentifyinfo> selectPersonApply(){
 
         AccountIdentifyinfoExample identifyinfoExample = new AccountIdentifyinfoExample();
+        identifyinfoExample.setOrderByClause("id desc");
         AccountIdentifyinfoExample.Criteria criteria = identifyinfoExample.createCriteria();
         criteria.andUserTypeEqualTo(0);
         List<AccountIdentifyinfo> accountIdentifyinfos = identifyinfoMapper.selectByExample(identifyinfoExample);
@@ -71,6 +78,7 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     public List<AccountIdentifyinfo> selectCompanyApply(){
 
         AccountIdentifyinfoExample identifyinfoExample = new AccountIdentifyinfoExample();
+        identifyinfoExample.setOrderByClause("id desc");
         AccountIdentifyinfoExample.Criteria criteria = identifyinfoExample.createCriteria();
         criteria.andUserTypeEqualTo(1);
         List<AccountIdentifyinfo> accountIdentifyinfos = identifyinfoMapper.selectByExample(identifyinfoExample);
@@ -88,6 +96,7 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     public void updateUserStatus(Integer id,Integer status,String comment,String token) {
 
         AccountIdentifyinfo identifyinfo = identifyinfoMapper.selectByPrimaryKey(id);
+
         String adminName = tokenUtil.getUserNameFromToken(token);
 
         AuthUserExample example = new AuthUserExample();
@@ -99,9 +108,19 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
         Timestamp ts = new Timestamp(new Date().getTime());
         identifyinfo.setDealTime(ts);
         identifyinfo.setStatus(status);
+
         AccountIdentifyinfoExample identifyinfoExample = new AccountIdentifyinfoExample();
         AccountIdentifyinfoExample.Criteria criteria = identifyinfoExample.createCriteria();
         criteria.andIdEqualTo(id);
         identifyinfoMapper.updateByExample(identifyinfo,identifyinfoExample);
+        //更新用户的角色
+        int userType = identifyinfo.getUserType();
+        int userId = identifyinfo.getUserId();
+        //审核通过，更新用户的角色，用户的角色和userType对应。
+        if(status == 1){
+
+            updateUserRoleByUid.updateUserRoleByUid(userId,userType);
+
+        }
     }
 }

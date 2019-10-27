@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ncst.car.dao.EntireLicenseApplyDao">
+    <resultMap id="EntireLicenseApplyMapper" type="cn.edu.ncst.car.dto.EntireLicenseApplyInfo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="image_company_id" jdbcType="INTEGER" property="imageCompanyId" />
+        <result column="image_person_id" jdbcType="INTEGER" property="imagePersonId" />
+        <result column="plate_no" jdbcType="VARCHAR" property="plateNo" />
+        <result column="plate_type" jdbcType="VARCHAR" property="plateType" />
+        <result column="pass_license_type" jdbcType="VARCHAR" property="passLicenseType" />
+        <result column="start_position" jdbcType="VARCHAR" property="startPosition" />
+        <result column="end_position" jdbcType="VARCHAR" property="endPosition" />
+        <result column="apply_route" jdbcType="VARCHAR" property="applyRoute" />
+        <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+        <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+        <result column="driver_name" jdbcType="VARCHAR" property="driverName" />
+        <result column="driver_idcard_no" jdbcType="VARCHAR" property="driverIdcardNo" />
+        <result column="apply_createtime" jdbcType="TIMESTAMP" property="applyCreatetime" />
+        <result column="deal_time" jdbcType="TIMESTAMP" property="dealTime" />
+        <result column="comment" jdbcType="VARCHAR" property="comment" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="handler_id" jdbcType="INTEGER" property="handlerId" />
+    </resultMap>
+    <resultMap id="personMapper" type="cn.edu.ncst.car.dto.EntireLicenseApplyInfo" extends="EntireLicenseApplyMapper">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="license_front" jdbcType="VARCHAR" property="licenseImagePerson.licenseFront" />
+        <result column="license_back" jdbcType="VARCHAR" property="licenseImagePerson.licenseBack" />
+        <result column="velicense_front" jdbcType="VARCHAR" property="licenseImagePerson.velicenseFront" />
+        <result column="velicense_back" jdbcType="VARCHAR" property="licenseImagePerson.velicenseBack" />
+        <result column="car_front" jdbcType="VARCHAR" property="licenseImagePerson.carFront" />
+        <result column="car_back" jdbcType="VARCHAR" property="licenseImagePerson.carBack" />
+    </resultMap>
+    <resultMap id="companyMapper" type="cn.edu.ncst.car.dto.EntireLicenseApplyInfo" extends="EntireLicenseApplyMapper">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="license_front" jdbcType="VARCHAR" property="licenseImageCompany.licenseFront" />
+        <result column="license_back" jdbcType="VARCHAR" property="licenseImageCompany.licenseBack" />
+        <result column="velicense_front" jdbcType="VARCHAR" property="licenseImageCompany.velicenseFront" />
+        <result column="velicense_back" jdbcType="VARCHAR" property="licenseImageCompany.velicenseBack" />
+        <result column="car_front" jdbcType="VARCHAR" property="licenseImageCompany.carFront" />
+        <result column="car_back" jdbcType="VARCHAR" property="licenseImageCompany.carBack" />
+        <result column="contract" jdbcType="VARCHAR" property="licenseImageCompany.contract" />
+        <result column="license_A" jdbcType="VARCHAR" property="licenseImageCompany.licenseA" />
+        <result column="license_B" jdbcType="VARCHAR" property="licenseImageCompany.licenseB" />
+    </resultMap>
+
+
+    <select id="selectByIdPerson" parameterType="int" resultMap="personMapper">
+        select license_applyinfo.*,license_image_person.* from license_applyinfo,license_image_person
+        where license_applyinfo.id = #{id} and license_applyinfo.image_person_id = license_image_person.id
+    </select>
+
+    <select id="selectByIdCompany" parameterType="int" resultMap="companyMapper">
+        select license_applyinfo.*,license_image_company.* from license_applyinfo,license_image_company
+        where license_applyinfo.id = #{id} and license_applyinfo.image_company_id = license_image_company.id
+    </select>
+</mapper>

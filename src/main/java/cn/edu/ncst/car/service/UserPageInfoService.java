@@ -6,7 +6,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 
 
-public interface PageInfoService {
+public interface UserPageInfoService {
 
     /**
      * 用户认证申请信息分页

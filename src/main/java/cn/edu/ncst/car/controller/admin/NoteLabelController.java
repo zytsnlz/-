@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Api(description = "标签管理")
+@Api(tags = "NoteLabelController",description = "标签管理")
 @RequestMapping("/admin")
 public class NoteLabelController {
     @Autowired
