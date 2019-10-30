@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ncst.car.dao.UpAndDownDao">
+
+    <select id="getApplyNextId" parameterType="int" resultType="int">
+        select account_identifyinfo.id from account_identifyinfo where id = (select id from account_identifyinfo
+        where status = 0 and id &gt; #{id} order by id asc limit 1)
+    </select>
+
+    <select id="getApplyPreviousId" parameterType="int" resultType="int">
+        select account_identifyinfo.id from account_identifyinfo where id = (select id from account_identifyinfo
+        where status = 0 and id &lt; #{id} order by id desc limit 1)
+    </select>
+
+    <select id="getLicenseNextId" parameterType="int" resultType="int">
+        select license_applyinfo.id from license_applyinfo where id = (select id from license_applyinfo
+        where status = 0 and id &gt; #{id} order by id asc limit 1)
+    </select>
+
+    <select id="getLicensePreviousId" parameterType="int" resultType="int">
+        select license_applyinfo.id from license_applyinfo where id = (select id from license_applyinfo
+        where status = 0 and id &lt; #{id} order by id desc limit 1)
+    </select>
+</mapper>

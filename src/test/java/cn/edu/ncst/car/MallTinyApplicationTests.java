@@ -6,6 +6,7 @@ import cn.edu.ncst.car.common.utils.JwtTokenUtil;
 import cn.edu.ncst.car.dao.EntireLicenseApplyDao;
 import cn.edu.ncst.car.dao.LicenseApplyRecordDao;
 import cn.edu.ncst.car.dao.MainLicenseApplyIDao;
+import cn.edu.ncst.car.dao.UpAndDownDao;
 import cn.edu.ncst.car.dto.EntireLicenseApplyInfo;
 import cn.edu.ncst.car.dto.LicenseApplyRecord;
 import cn.edu.ncst.car.dto.MainLicenseApplyInfo;
@@ -116,7 +117,7 @@ public class MallTinyApplicationTests {
         }
     }
     @Test
-    public void test2(){
+    public void test2() {
 
         System.out.println("---");
         int user_role = updateUserRoleByUid.selectUserRoleByUid(1);
@@ -124,8 +125,20 @@ public class MallTinyApplicationTests {
 
 
     }
+    @Autowired
+    UpAndDownDao upAndDownDao;
     @Test
     public void test03(){
+
+        int nextId = upAndDownDao.getApplyNextId(3);//1
+        int previous = upAndDownDao.getApplyPreviousId(3);//4
+        System.out.println(previous);
+        System.out.println(nextId);
+
+        int nextLicense = upAndDownDao.getLicenseNextId(2);//2
+        int previousLicense = upAndDownDao.getLicensePreviousId(2);//4
+        System.out.println(nextLicense);
+        System.out.println(previousLicense);
 
     }
 }

@@ -9,9 +9,6 @@ import cn.edu.ncst.car.service.GetCurrentUserNameService;
 import cn.edu.ncst.car.service.UmsAdminService;
 import cn.edu.ncst.car.service.UpdateUserRoleByUid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -62,7 +59,6 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     public List<AccountIdentifyinfo> selectByStatus(Integer status) {
 
         AccountIdentifyinfoExample identifyinfoExample = new AccountIdentifyinfoExample();
-        identifyinfoExample.setOrderByClause("id desc");
         AccountIdentifyinfoExample.Criteria criteria = identifyinfoExample.createCriteria();
         criteria.andStatusEqualTo(status);
         List<AccountIdentifyinfo> identifyinfos = identifyinfoMapper.selectByExample(identifyinfoExample);

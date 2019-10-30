@@ -23,7 +23,7 @@
     </select>
     <select id="selectByStatus" resultMap="MainLicenseApplyMap" parameterType="int">
         select license_applyinfo.*,auth_user_role_relation.role_id from license_applyinfo,auth_user_role_relation
-         where status = #{status} And license_applyinfo.user_id = auth_user_role_relation.user_id order by license_applyinfo.id desc
+         where status = #{status} And license_applyinfo.user_id = auth_user_role_relation.user_id
     </select>
     <select id="selectByPlateNo" resultMap="MainLicenseApplyMap" parameterType="string">
         select license_applyinfo.*,auth_user_role_relation.role_id from license_applyinfo,auth_user_role_relation
