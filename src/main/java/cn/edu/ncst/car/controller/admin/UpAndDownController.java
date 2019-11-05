@@ -29,7 +29,7 @@ public class UpAndDownController {
      */
     @RequestMapping(value = "/lastUnLicense",method = RequestMethod.POST)
     @ApiOperation(value = "查看上一条未处理的通行证申请记录")
-    public Map<String,Object> selectPreviousUnLicenseApply(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id") int id){
+    public Map<String,Object> selectPreviousUnLicenseApply(@RequestParam @ApiParam(value = "当前处理的申请记录的id",required = true) int id){
 
         Map<String,Object> map = upAndDownService.SelectPreviousLicenseApply(id);
         return map;
@@ -43,7 +43,7 @@ public class UpAndDownController {
      */
     @ApiOperation("查看下一条未处理的通行证申请记录")
     @RequestMapping(value = "/nextUnLicense",method = RequestMethod.POST)
-    public Map<String,Object> selectNextUnLicenseApply(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id") int id){
+    public Map<String,Object> selectNextUnLicenseApply(@RequestParam @ApiParam(value = "当前处理的申请记录的id",required = true) int id){
 
         Map<String,Object> map = upAndDownService.SelectNextLicenseApply(id);
         return map;
@@ -57,7 +57,7 @@ public class UpAndDownController {
      */
     @ApiOperation("查看上一条未处理的用户认证申请记录")
     @RequestMapping(value = "/lastUnApply",method = RequestMethod.POST)
-    public AccountIdentifyinfo selectPreviousUnApplyInfo(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id") int id){
+    public AccountIdentifyinfo selectPreviousUnApplyInfo(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id",required = true) int id){
         AccountIdentifyinfo accountIdentifyinfo = upAndDownService.SelectPreviousApplyInfo(id);
         return accountIdentifyinfo;
     }
@@ -69,7 +69,7 @@ public class UpAndDownController {
      */
     @ApiOperation("查看下一条未处理的用户认证申请记录")
     @RequestMapping(value = "/nextUnApply",method = RequestMethod.POST)
-    public AccountIdentifyinfo selectNextUnApplyInfo(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id") int id){
+    public AccountIdentifyinfo selectNextUnApplyInfo(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id",required = true) int id){
         AccountIdentifyinfo accountIdentifyinfo = upAndDownService.SelectNextApplyInfo(id);
         return accountIdentifyinfo;
     }
@@ -81,7 +81,7 @@ public class UpAndDownController {
      */
     @ApiOperation("查看上一条用户认证申请记录")
     @RequestMapping(value = "/lastApply",method = RequestMethod.GET)
-    public AccountIdentifyinfo selectLastApplyInfo(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id") int id){
+    public AccountIdentifyinfo selectLastApplyInfo(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id",required = true) int id){
         AccountIdentifyinfo accountIdentifyinfo = upAndDownService.previousAccountIdentifyinfo(id);
         return accountIdentifyinfo;
     }
@@ -93,7 +93,7 @@ public class UpAndDownController {
      */
     @ApiOperation("查看下一条用户认证申请记录")
     @RequestMapping(value = "/nextApply",method = RequestMethod.GET)
-    public AccountIdentifyinfo selectNextApplyInfo(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id") int id){
+    public AccountIdentifyinfo selectNextApplyInfo(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id",required = true) int id){
         AccountIdentifyinfo accountIdentifyinfo = upAndDownService.nextAccountIdentifyinfo(id);
         return accountIdentifyinfo;
     }
@@ -105,7 +105,7 @@ public class UpAndDownController {
      */
     @RequestMapping(value = "/lastLicense",method = RequestMethod.GET)
     @ApiOperation(value = "查看上一条用户通行证申请记录")
-    public Map<String,Object> selectLastLicenseApply(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id") int id){
+    public Map<String,Object> selectLastLicenseApply(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id",required = true) int id){
 
         Map<String,Object> map = upAndDownService.previousLicenseApply(id);
         return map;
@@ -119,7 +119,7 @@ public class UpAndDownController {
      */
     @RequestMapping(value = "/nextLicense",method = RequestMethod.GET)
     @ApiOperation(value = "查看下一条用户通行证申请记录")
-    public Map<String,Object> selectNextLicenseApply(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id") int id){
+    public Map<String,Object> selectNextLicenseApply(@RequestParam(required = true) @ApiParam(value = "当前处理的申请记录的id",required = true) int id){
 
         Map<String,Object> map = upAndDownService.nextLicenseApply(id);
         return map;

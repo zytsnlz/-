@@ -8,6 +8,7 @@ import cn.edu.ncst.car.service.LicensePageInfoService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,7 +51,7 @@ public class LicenseApplyController {
      */
     @ApiOperation("根据status筛选位未处理的申请(0)、已通过的申请(1)、未通过的申请(2)")
     @RequestMapping(value = "/license",method = RequestMethod.PUT)
-    public CommonResult<CommonPage> selectLicenseByStatus(@RequestParam(defaultValue = "1") int pageNum,@RequestParam(defaultValue = "8") int pageSize,int status){
+    public CommonResult<CommonPage> selectLicenseByStatus(@RequestParam(defaultValue = "1") int pageNum,@RequestParam(defaultValue = "8") int pageSize,@ApiParam(required = true) int status){
 
         PageInfo<MainLicenseApplyInfo> pageInfo = licensePageInfoService.byStatusPageInfo(pageNum,pageSize,status);
         CommonPage<MainLicenseApplyInfo> commonPage = new CommonPage<>(pageInfo);
@@ -66,7 +67,7 @@ public class LicenseApplyController {
      */
     @ApiOperation("根据车牌号查找通行证申请记录")
     @RequestMapping(value = "/license",method = RequestMethod.POST)
-    public CommonResult<CommonPage> selectLicenseByPlateNo(@RequestParam(defaultValue = "1") int pageNum,@RequestParam(defaultValue = "8") int pageSize,String plateNo){
+    public CommonResult<CommonPage> selectLicenseByPlateNo(@RequestParam(defaultValue = "1") int pageNum,@RequestParam(defaultValue = "8") int pageSize,@ApiParam(required = true) String plateNo){
 
         PageInfo<MainLicenseApplyInfo> pageInfo = licensePageInfoService.byPlateNoPageInfo(pageNum,pageSize,plateNo);
         CommonPage<MainLicenseApplyInfo> commonPage = new CommonPage<>(pageInfo);
@@ -111,7 +112,7 @@ public class LicenseApplyController {
      */
     @ApiOperation("查看某一条通行证申请记录")
     @RequestMapping(value = "/license/{id}",method = RequestMethod.GET)
-    public Map<String,Object> selectOneApplyLicense(@PathVariable(required = true) Integer id){
+    public Map<String,Object> selectOneApplyLicense(@PathVariable @ApiParam(required = true) Integer id){
         Map<String,Object> map = adminLicenseApplyService.selectOneApplyInfoById(id);
         return map;
     }

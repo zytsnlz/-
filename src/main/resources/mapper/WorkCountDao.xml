@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ncst.car.dao.WorkCountDao">
+    <select id="countWork" resultType="int" parameterType="cn.edu.ncst.car.dto.CountCondition">
+        <if test="recordType==0">
+            select count(*) from account_identifyinfo where handler_id = #{adminId}
+            <if test="startTime != null">
+                <![CDATA[
+				and	DATE_FORMAT(deal_time, '%Y-%m-%d')>= DATE_FORMAT(#{startTime}, '%Y-%m-%d')
+			]]>
+            </if>
+            <if test="endTime != null">
+                <![CDATA[
+				and	DATE_FORMAT(deal_time, '%Y-%m-%d')<= DATE_FORMAT(#{endTime}, '%Y-%m-%d')
+			]]>
+            </if>
+
+        </if>
+        <if test="recordType==1">
+            select count(*) from license_applyinfo where handler_id = #{adminId}
+            <if test="startTime != null ">
+                <![CDATA[
+				and	DATE_FORMAT(deal_time, '%Y-%m-%d')>= DATE_FORMAT(#{startTime}, '%Y-%m-%d')
+			]]>
+            </if>
+            <if test="endTime != null ">
+                <![CDATA[
+				and	DATE_FORMAT(deal_time, '%Y-%m-%d')<= DATE_FORMAT(#{endTime}, '%Y-%m-%d')
+			]]>
+            </if>
+
+        </if>
+    </select>
+</mapper>

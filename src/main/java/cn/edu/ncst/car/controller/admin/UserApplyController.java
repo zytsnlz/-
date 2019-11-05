@@ -9,6 +9,7 @@ import cn.edu.ncst.car.service.UserPageInfoService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,7 +50,7 @@ public class UserApplyController {
     @ApiOperation("根据用户姓名查找申请记录")
     @RequestMapping(value = "/apply",method = RequestMethod.POST)
     public CommonResult<CommonPage> getUserApplyByName( @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "8") int pageSize,
-                                                       @RequestParam String name){
+                                                       @RequestParam @ApiParam(required = true) String name){
 
         PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.byNameApplyPageInfo(pageNum, pageSize, name);
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
@@ -90,7 +91,7 @@ public class UserApplyController {
     }
     @ApiOperation("查看某个用户的具体申请")
     @RequestMapping(value = "/apply/{id}",method = RequestMethod.GET)
-    public CommonResult<AccountIdentifyinfo> getOneApplyInfoById(@PathVariable(name = "id",required = true) Integer id ){
+    public CommonResult<AccountIdentifyinfo> getOneApplyInfoById(@PathVariable(name = "id") @ApiParam(required = true) Integer id ){
 
         AccountIdentifyinfo identifyinfo = applyService.selectOneApplyInfoById(id);
         return CommonResult.success(identifyinfo);
@@ -98,7 +99,7 @@ public class UserApplyController {
     @ApiOperation("根据status筛选位未处理的申请(0)、已通过的申请(1)、未通过的申请(2)")
     @RequestMapping(value = "/apply/filter",method = RequestMethod.GET)
     public CommonResult<CommonPage> getApplyInfoByStatus(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "8") int pageSize,
-                                                                @RequestParam(required = true) int status){
+                                                                @RequestParam @ApiParam(required = true) int status){
         PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.byStatusApplyPageInfo(pageNum,pageSize,status);
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
         return CommonResult.success(commonPage);
