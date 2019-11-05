@@ -32,7 +32,7 @@ public class UserApplyController {
      */
     @ApiOperation("获取所有用户申请")
     @RequestMapping(value = "/apply",method = RequestMethod.GET)
-    public CommonResult<CommonPage> getAllUserApply(@RequestParam int pageNum, @RequestParam int pageSize){
+    public CommonResult<CommonPage> getAllUserApply(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "8") int pageSize){
 
         PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.userApplyPageInfo(pageNum,pageSize);
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
@@ -48,7 +48,7 @@ public class UserApplyController {
      */
     @ApiOperation("根据用户姓名查找申请记录")
     @RequestMapping(value = "/apply",method = RequestMethod.POST)
-    public CommonResult<CommonPage> getUserApplyByName( @RequestParam int pageNum, @RequestParam int pageSize,
+    public CommonResult<CommonPage> getUserApplyByName( @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "8") int pageSize,
                                                        @RequestParam String name){
 
         PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.byNameApplyPageInfo(pageNum, pageSize, name);
@@ -65,7 +65,7 @@ public class UserApplyController {
      */
     @ApiOperation("获取所有个人用户申请")
     @RequestMapping(value = "/apply/user",method = RequestMethod.GET)
-    public CommonResult<CommonPage> getPersonApply(@RequestParam int pageNum,@RequestParam int pageSize){
+    public CommonResult<CommonPage> getPersonApply(@RequestParam(defaultValue = "1") int pageNum,@RequestParam(defaultValue = "8") int pageSize){
 
         PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.personApplyPageInfo(pageNum,pageSize);
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
@@ -81,7 +81,7 @@ public class UserApplyController {
      */
     @ApiOperation("查看所有企业用户申请")
     @RequestMapping(value = "/apply/company",method = RequestMethod.GET)
-    public CommonResult<CommonPage> getCompanyApply(@RequestParam int pageNum,@RequestParam int pageSize){
+    public CommonResult<CommonPage> getCompanyApply(@RequestParam(defaultValue = "1") int pageNum,@RequestParam(defaultValue = "8") int pageSize){
 
         PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.componyApplyPageInfo(pageNum,pageSize);
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
@@ -90,15 +90,15 @@ public class UserApplyController {
     }
     @ApiOperation("查看某个用户的具体申请")
     @RequestMapping(value = "/apply/{id}",method = RequestMethod.GET)
-    public CommonResult<AccountIdentifyinfo> getOneApplyInfoById(@PathVariable(name = "id") Integer id ){
+    public CommonResult<AccountIdentifyinfo> getOneApplyInfoById(@PathVariable(name = "id",required = true) Integer id ){
 
         AccountIdentifyinfo identifyinfo = applyService.selectOneApplyInfoById(id);
         return CommonResult.success(identifyinfo);
     }
     @ApiOperation("根据status筛选位未处理的申请(0)、已通过的申请(1)、未通过的申请(2)")
     @RequestMapping(value = "/apply/filter",method = RequestMethod.GET)
-    public CommonResult<CommonPage> getApplyInfoByStatus(@RequestParam int pageNum, @RequestParam int pageSize,
-                                                                @RequestParam int status){
+    public CommonResult<CommonPage> getApplyInfoByStatus(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "8") int pageSize,
+                                                                @RequestParam(required = true) int status){
         PageInfo<AccountIdentifyinfo> pageInfo = userPageInfoService.byStatusApplyPageInfo(pageNum,pageSize,status);
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
         return CommonResult.success(commonPage);

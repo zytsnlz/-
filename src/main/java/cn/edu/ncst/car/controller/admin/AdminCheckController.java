@@ -9,9 +9,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- *
- */
+
 @RestController
 @Api(description = "审核用户的申请信息",tags = "AdminCheckController")
 @RequestMapping("/admin")
@@ -25,8 +23,8 @@ public class AdminCheckController {
 
     @RequestMapping(value = "/checkUser",method = RequestMethod.POST)
     @ApiOperation("审核用户的认证申请信息")
-    public CommonResult<String> checkApplyInfo(@RequestParam Integer id,
-                                       @RequestParam @ApiParam(value = "管理员对用户的操作(1-审核通过，2-审核未通过)") Integer status,
+    public CommonResult<String> checkApplyInfo(@RequestParam(required = true) Integer id,
+                                       @RequestParam(required = true) @ApiParam(value = "管理员对用户的操作(1-审核通过，2-审核未通过)") Integer status,
                                        @RequestParam @ApiParam(value = "管理员的反馈信息") String comment){
 
         applyService.updateUserStatus(id,status,comment);
@@ -35,9 +33,9 @@ public class AdminCheckController {
     }
     @ApiOperation("审核用户的通行证申请信息")
     @RequestMapping(value = "/checkLicense",method = RequestMethod.POST)
-    public CommonResult<String> checkLicenseInfo(@RequestParam Integer id,
-                                 @RequestParam @ApiParam(value = "管理员对用户的操作(1-审核通过，2-审核未通过)") Integer status,
-                                 @RequestParam @ApiParam(value = "管理员的反馈信息") String comment){
+    public CommonResult<String> checkLicenseInfo(@RequestParam  Integer id,
+                                 @RequestParam(required = true) @ApiParam(value = "管理员对用户的操作(1-审核通过，2-审核未通过)") Integer status,
+                                 @RequestParam() @ApiParam(value = "管理员的反馈信息") String comment){
 
         licenseApplyService.updateUserStatus(id,status,comment);
         return CommonResult.success("审核成功");

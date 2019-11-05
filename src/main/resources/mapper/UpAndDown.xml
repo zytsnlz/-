@@ -21,4 +21,56 @@
         select license_applyinfo.id from license_applyinfo where id = (select id from license_applyinfo
         where status = 0 and id &lt; #{id} order by id desc limit 1)
     </select>
+    <select id="ApplyNextId" parameterType="int" resultType="int">
+        select account_identifyinfo.id from account_identifyinfo where id = (select id from account_identifyinfo
+        where  id &lt; #{id} order by id desc limit 1)
+
+    </select>
+
+    <select id="ApplyPreviousId" parameterType="int" resultType="int">
+        select account_identifyinfo.id from account_identifyinfo where id = (select id from account_identifyinfo
+        where id &gt; #{id} order by id asc limit 1)
+    </select>
+
+    <select id="LicenseNextId" parameterType="int" resultType="int">
+        select license_applyinfo.id from license_applyinfo where id = (select id from license_applyinfo
+        where id &lt; #{id} order by id desc limit 1)
+
+    </select>
+
+    <select id="LicensePreviousId" parameterType="int" resultType="int">
+        select license_applyinfo.id from license_applyinfo where id = (select id from license_applyinfo
+        where id &gt; #{id} order by id asc limit 1)
+    </select>
+    <select id="getFirstUnApplyId" resultType="int">
+        select account_identifyinfo.id from account_identifyinfo where id = (select id from account_identifyinfo
+        where status = 0 limit 1)
+    </select>
+    <select id="getLastUnApplyId" resultType="int">
+        select account_identifyinfo.id from account_identifyinfo where id = (select  id from account_identifyinfo
+        where status = 0 order by id desc limit 1)
+    </select>
+    <select id="getFirstUnLicenseId" resultType="int">
+        select license_applyinfo.id from license_applyinfo where id = (select id from license_applyinfo
+        where status = 0 limit 1)
+    </select>
+    <select id="getLastUnLicenseId" resultType="int">
+        select license_applyinfo.id from license_applyinfo where id = (select  id from license_applyinfo
+        where status = 0 order by id desc limit 1)
+    </select>
+    <select id="getFirstApplyId" resultType="int">
+         select account_identifyinfo.id from account_identifyinfo order by id desc limit 1
+    </select>
+    <select id="getLastApplyId" resultType="int">
+         select account_identifyinfo.id from account_identifyinfo order by id asc limit 1
+    </select>
+    <select id="getFirstLicenseId" resultType="int">
+         select license_applyinfo.id from license_applyinfo order by id desc limit 1
+    </select>
+    <select id="getLastLicenseId" resultType="int">
+         select license_applyinfo.id from license_applyinfo order by id asc limit 1
+    </select>
+
+
+
 </mapper>

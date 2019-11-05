@@ -35,8 +35,86 @@ public interface UpAndDownDao {
      * @param id
      * @return
      */
+    int LicenseNextId(int id);
+
+    /**
+     * 获取当前未处理的用户认证申请记录的上一条记录的id
+     * @param id
+     * @return
+     */
+    int ApplyPreviousId(int id);
+
+
+    /**
+     * 获取当前未处理的用户认证申请记录的下一条记录的id
+     * @param id
+     * @return
+     */
+    int ApplyNextId(int id);
+
+    /**
+     * 获取当前未处理的通行证申请记录的上一条记录的id
+     * @param id
+     * @return
+     */
+    int LicensePreviousId(int id);
+
+
+    /**
+     * 获取当前未处理的通行证申请记录的下一条记录的id
+     * @param id
+     * @return
+     */
     int getLicenseNextId(int id);
 
+
+    /**
+     * 获取所有的未处理的用户认证申请中的第一条记录的id
+     * @return
+     */
+    int getFirstUnApplyId();
+
+    /**
+     * 获取所有的未处理的用户认证申请中的最后一条记录的id
+     * @return
+     */
+    int getLastUnApplyId();
+
+    /**
+     * 获取所有的未处理的通行证申请中的第一条记录的id
+     * @return
+     */
+    int getFirstUnLicenseId();
+
+    /**
+     * 获取所有的未处理的通行证申请中的最后一条记录的id
+     * @return
+     */
+    int getLastUnLicenseId();
+
+    /**
+     * 获取所有的用户认证申请中的第一条记录的id
+     * @return
+     */
+    int getFirstApplyId();
+
+    /**
+     * 获取所有的用户认证申请中最后一条记录的id
+     * @return
+     */
+    int getLastApplyId();
+
+    /**
+     * 获取所有的通行证申请中第一条记录的id
+     * @return
+     */
+    int getFirstLicenseId();
+
+    /**
+     * 获取所有的通行证申请中最后一条记录的id
+     * @return
+     */
+    int getLastLicenseId();
 
 
 }
