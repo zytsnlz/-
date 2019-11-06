@@ -11,5 +11,12 @@ public interface WorkCountService {
     int countOne(CountCondition countCondition);
 
 
+    /**
+     * 统计每一位管理员的工作审核数量
+     * @return
+     */
+    int countAll();
+
+
 
 }

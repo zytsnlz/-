@@ -3,6 +3,7 @@ package cn.edu.ncst.car.controller;
 import cn.edu.ncst.car.dto.UmsAdminLoginParam;
 import cn.edu.ncst.car.mbg.model.AuthPermission;
 import cn.edu.ncst.car.mbg.model.AuthUser;
+import cn.edu.ncst.car.mbg.model.AuthUserExample;
 import cn.edu.ncst.car.service.GetCurrentUserNameService;
 import cn.edu.ncst.car.service.UmsAdminService;
 import cn.edu.ncst.car.common.api.CommonResult;
@@ -54,13 +55,19 @@ public class UmsAdminController {
 
         String token = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
         String userName = userNameService.getCurrentUserName();
+        AuthUserExample example = new AuthUserExample();
+        example.createCriteria().andUsernameEqualTo(userName);
+        AuthUser authUser = adminService.getAdminByUsername(userName);
+        int userId = authUser.getId();
+
         if (token == null) {
             return CommonResult.validateFailed("用户名或密码错误");
         }
-        Map<String, String> tokenMap = new HashMap<>();
+        Map<String, Object> tokenMap = new HashMap<>();
         tokenMap.put("token", token);
         tokenMap.put("tokenHead", tokenHead);
         tokenMap.put("userName",userName);
+        tokenMap.put("userId",userId);
         return CommonResult.success(tokenMap);
     }
 
