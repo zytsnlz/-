@@ -104,7 +104,8 @@ public class UserApplyController {
         CommonPage<AccountIdentifyinfo> commonPage = new CommonPage<>(pageInfo);
         return CommonResult.success(commonPage);
 
-
     }
+
+
 
 }

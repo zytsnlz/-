@@ -1,20 +1,15 @@
 package cn.edu.ncst.car;
 
 import cn.edu.ncst.car.common.api.CommonPage;
-import cn.edu.ncst.car.common.api.CommonResult;
-import cn.edu.ncst.car.common.utils.JwtTokenUtil;
 import cn.edu.ncst.car.dao.EntireLicenseApplyDao;
 import cn.edu.ncst.car.dao.LicenseApplyRecordDao;
-import cn.edu.ncst.car.dao.MainLicenseApplyIDao;
 import cn.edu.ncst.car.dao.UpAndDownDao;
 import cn.edu.ncst.car.dto.EntireLicenseApplyInfo;
 import cn.edu.ncst.car.dto.LicenseApplyRecord;
-import cn.edu.ncst.car.dto.MainLicenseApplyInfo;
 import cn.edu.ncst.car.mbg.mapper.LicenseApplyinfoMapper;
 import cn.edu.ncst.car.mbg.model.AccountIdentifyinfo;
 import cn.edu.ncst.car.mbg.model.LicenseApplyinfo;
 import cn.edu.ncst.car.service.AdminLicenseApplyService;
-import cn.edu.ncst.car.service.LicensePageInfoService;
 import cn.edu.ncst.car.service.UpdateUserRoleByUid;
 import cn.edu.ncst.car.service.UserPageInfoService;
 import cn.edu.ncst.car.service.impl.AdminUserApplyServiceImpl;
@@ -27,11 +22,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -141,4 +133,5 @@ public class MallTinyApplicationTests {
         System.out.println(previousLicense);
 
     }
+
 }
