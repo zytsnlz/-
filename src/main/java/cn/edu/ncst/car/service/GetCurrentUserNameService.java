@@ -7,4 +7,11 @@ public interface GetCurrentUserNameService {
      * @return
      */
     String getCurrentUserName();
+
+    /**
+     * 根据用户名获得用户的id
+     * @param uerName
+     * @return
+     */
+    Integer getIdByUserName(String uerName);
 }

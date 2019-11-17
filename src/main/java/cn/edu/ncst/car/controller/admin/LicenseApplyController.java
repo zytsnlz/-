@@ -50,8 +50,8 @@ public class LicenseApplyController {
      * @return
      */
     @ApiOperation("根据status筛选位未处理的申请(0)、已通过的申请(1)、未通过的申请(2)")
-    @RequestMapping(value = "/license",method = RequestMethod.PUT)
-    public CommonResult<CommonPage> selectLicenseByStatus(@RequestParam(defaultValue = "1") int pageNum,@RequestParam(defaultValue = "8") int pageSize,@ApiParam(required = true) int status){
+    @RequestMapping(value = "/license/filter",method = RequestMethod.GET)
+    public CommonResult<CommonPage> selectLicenseByStatus(@RequestParam(defaultValue = "1") int pageNum,@RequestParam(defaultValue = "8") int pageSize,@RequestParam int status){
 
         PageInfo<MainLicenseApplyInfo> pageInfo = licensePageInfoService.byStatusPageInfo(pageNum,pageSize,status);
         CommonPage<MainLicenseApplyInfo> commonPage = new CommonPage<>(pageInfo);

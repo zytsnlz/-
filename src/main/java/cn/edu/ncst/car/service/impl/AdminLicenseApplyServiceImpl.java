@@ -8,16 +8,17 @@ import cn.edu.ncst.car.dto.EntireLicenseApplyInfo;
 import cn.edu.ncst.car.dto.LicenseApplyRecord;
 import cn.edu.ncst.car.dto.MainLicenseApplyInfo;
 import cn.edu.ncst.car.mbg.mapper.LicenseApplyinfoMapper;
-import cn.edu.ncst.car.mbg.model.AuthUser;
-import cn.edu.ncst.car.mbg.model.AuthUserExample;
-import cn.edu.ncst.car.mbg.model.LicenseApplyinfo;
-import cn.edu.ncst.car.mbg.model.LicenseApplyinfoExample;
+import cn.edu.ncst.car.mbg.mapper.MessageInformMapper;
+import cn.edu.ncst.car.mbg.model.*;
 import cn.edu.ncst.car.service.GetCurrentUserNameService;
+import cn.edu.ncst.car.service.SystemInformService;
 import cn.edu.ncst.car.service.UmsAdminService;
 import cn.edu.ncst.car.service.UpdateUserRoleByUid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,10 +45,13 @@ public class AdminLicenseApplyServiceImpl implements cn.edu.ncst.car.service.Adm
     JwtTokenUtil tokenUtil;
 
     @Autowired
-    UmsAdminService adminService;
+    GetCurrentUserNameService userNameService;
 
     @Autowired
-    GetCurrentUserNameService userNameService;
+    MessageInformMapper messageInformMapper;
+
+    @Autowired
+    SystemInformService systemInformService;
 
     @Override
     public List<MainLicenseApplyInfo> selectAll() {
@@ -122,14 +126,16 @@ public class AdminLicenseApplyServiceImpl implements cn.edu.ncst.car.service.Adm
         LicenseApplyinfo licenseApplyinfo = licenseApplyinfoMapper.selectByPrimaryKey(id);
 
         //获取管理员的id
-        AuthUserExample example = new AuthUserExample();
-        example.createCriteria().andUsernameEqualTo(adminName);
-        AuthUser authUser = adminService.getAdminByUsername(adminName);
+        Integer userId = userNameService.getIdByUserName(adminName);
         //记录处理该条记录的管理员的id
-        licenseApplyinfo.setHandlerId(authUser.getId());
+        licenseApplyinfo.setHandlerId(userId);
         licenseApplyinfo.setComment(comment);
         licenseApplyinfo.setStatus(status);
-
+        Timestamp ts = new Timestamp(new Date().getTime());
+        licenseApplyinfo.setDealTime(ts);
+        //审批后发送系统消息通知用户审批结果
+        MessageInform messageInform = systemInformService.insertLicenseInform(status,id,ts);
+        messageInformMapper.insert(messageInform);
 
         LicenseApplyinfoExample applyinfoExample = new LicenseApplyinfoExample();
         LicenseApplyinfoExample.Criteria criteria = applyinfoExample.createCriteria();

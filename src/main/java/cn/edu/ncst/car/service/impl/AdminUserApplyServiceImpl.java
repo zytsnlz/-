@@ -3,11 +3,9 @@ package cn.edu.ncst.car.service.impl;
 import cn.edu.ncst.car.common.utils.JwtTokenUtil;
 import cn.edu.ncst.car.mbg.mapper.AccountIdentifyinfoMapper;
 import cn.edu.ncst.car.mbg.mapper.AuthUserRoleRelationMapper;
+import cn.edu.ncst.car.mbg.mapper.MessageInformMapper;
 import cn.edu.ncst.car.mbg.model.*;
-import cn.edu.ncst.car.service.AdminUserApplyService;
-import cn.edu.ncst.car.service.GetCurrentUserNameService;
-import cn.edu.ncst.car.service.UmsAdminService;
-import cn.edu.ncst.car.service.UpdateUserRoleByUid;
+import cn.edu.ncst.car.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +23,16 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     @Autowired
     AdminUserApplyServiceImpl adminUserApplyService;
     @Autowired
-    UmsAdminService adminService;
-    @Autowired
     AuthUserRoleRelationMapper userRoleRelationMapper;
     @Autowired
     UpdateUserRoleByUid updateUserRoleByUid;
     @Autowired
     GetCurrentUserNameService userNameService;
+    @Autowired
+    MessageInformMapper messageInformMapper;
+    @Autowired
+    SystemInformService systemInformService;
+
 
 
     @Override
@@ -102,15 +103,16 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
         AccountIdentifyinfo identifyinfo = identifyinfoMapper.selectByPrimaryKey(id);
 
         //获取管理员的id
-        AuthUserExample example = new AuthUserExample();
-        example.createCriteria().andUsernameEqualTo(adminName);
-        AuthUser authUser = adminService.getAdminByUsername(adminName);
+        Integer userId1 = userNameService.getIdByUserName(adminName);
         //记录处理该条申请记录的管理员的id
-        identifyinfo.setHandlerId(authUser.getId());
+        identifyinfo.setHandlerId(userId1);
         identifyinfo.setComment(comment);
         Timestamp ts = new Timestamp(new Date().getTime());
         identifyinfo.setDealTime(ts);
         identifyinfo.setStatus(status);
+        //审批后发送系统消息通知用户审批结果
+        MessageInform messageInform = systemInformService.insertAccountInform(status, id, ts);
+        messageInformMapper.insert(messageInform);
 
         AccountIdentifyinfoExample identifyinfoExample = new AccountIdentifyinfoExample();
         AccountIdentifyinfoExample.Criteria criteria = identifyinfoExample.createCriteria();

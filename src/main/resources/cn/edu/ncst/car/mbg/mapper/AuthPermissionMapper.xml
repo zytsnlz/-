@@ -7,11 +7,11 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="value" jdbcType="VARCHAR" property="value" />
     <result column="type" jdbcType="INTEGER" property="type" />
-                  <result column="uri" jdbcType="VARCHAR" property="uri" />
-                  <result column="status" jdbcType="INTEGER" property="status" />
-                  <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-                  <result column="sort" jdbcType="INTEGER" property="sort" />
-                </resultMap>
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
