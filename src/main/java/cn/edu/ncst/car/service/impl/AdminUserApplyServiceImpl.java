@@ -96,16 +96,14 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
     }
 
     @Override
-    public void updateUserStatus(Integer id,Integer status,String comment) {
+    public void updateUserStatus(Integer id,Integer userId,Integer status,String comment) {
 
         String adminName = userNameService.getCurrentUserName();
 
         AccountIdentifyinfo identifyinfo = identifyinfoMapper.selectByPrimaryKey(id);
 
-        //获取管理员的id
-        Integer userId1 = userNameService.getIdByUserName(adminName);
         //记录处理该条申请记录的管理员的id
-        identifyinfo.setHandlerId(userId1);
+        identifyinfo.setHandlerId(userId);
         identifyinfo.setComment(comment);
         Timestamp ts = new Timestamp(new Date().getTime());
         identifyinfo.setDealTime(ts);
@@ -120,11 +118,11 @@ public class AdminUserApplyServiceImpl implements AdminUserApplyService {
         identifyinfoMapper.updateByExample(identifyinfo,identifyinfoExample);
         //更新用户的角色
         int userType = identifyinfo.getUserType();
-        int userId = identifyinfo.getUserId();
+        int userId1 = identifyinfo.getUserId();
         //审核通过，更新用户的角色，用户的角色和userType对应。
         if(status == 1){
 
-            updateUserRoleByUid.updateUserRoleByUid(userId,userType);
+            updateUserRoleByUid.updateUserRoleByUid(userId1,userType);
 
         }
     }

@@ -10,10 +10,7 @@ import cn.edu.ncst.car.dto.MainLicenseApplyInfo;
 import cn.edu.ncst.car.mbg.mapper.LicenseApplyinfoMapper;
 import cn.edu.ncst.car.mbg.mapper.MessageInformMapper;
 import cn.edu.ncst.car.mbg.model.*;
-import cn.edu.ncst.car.service.GetCurrentUserNameService;
-import cn.edu.ncst.car.service.SystemInformService;
-import cn.edu.ncst.car.service.UmsAdminService;
-import cn.edu.ncst.car.service.UpdateUserRoleByUid;
+import cn.edu.ncst.car.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class AdminLicenseApplyServiceImpl implements cn.edu.ncst.car.service.AdminLicenseApplyService {
+public class AdminLicenseApplyServiceImpl implements AdminLicenseApplyService {
 
     @Autowired
     EntireLicenseApplyDao entireLicenseApplyDao;
@@ -118,15 +115,13 @@ public class AdminLicenseApplyServiceImpl implements cn.edu.ncst.car.service.Adm
     }
 
     @Override
-    public void updateUserStatus(Integer id, Integer status, String comment) {
+    public void updateUserStatus(Integer id,Integer userId, Integer status, String comment) {
 
         //获取当前登录管理员的用户名
         String adminName = userNameService.getCurrentUserName();
 
         LicenseApplyinfo licenseApplyinfo = licenseApplyinfoMapper.selectByPrimaryKey(id);
 
-        //获取管理员的id
-        Integer userId = userNameService.getIdByUserName(adminName);
         //记录处理该条记录的管理员的id
         licenseApplyinfo.setHandlerId(userId);
         licenseApplyinfo.setComment(comment);

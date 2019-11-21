@@ -51,6 +51,6 @@ public interface AdminLicenseApplyService {
     /**
      * 管理员审核某用户认证申请
      */
-    void updateUserStatus(Integer id,Integer status,String comment);
+    void updateUserStatus(Integer id,Integer userId,Integer status,String comment);
 
 }
