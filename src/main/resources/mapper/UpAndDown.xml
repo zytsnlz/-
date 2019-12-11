@@ -54,7 +54,7 @@
         select license_applyinfo.id from license_applyinfo where id = (select id from license_applyinfo
         where status = 0 limit 1)
     </select>
-    <select id="getLastUnLicenseId" resultType="int">
+    <select id="getLastUnLicenseId" resultType="integer">
         select license_applyinfo.id from license_applyinfo where id = (select  id from license_applyinfo
         where status = 0 order by id desc limit 1)
     </select>
@@ -70,7 +70,7 @@
     <select id="getLastLicenseId" resultType="int">
          select license_applyinfo.id from license_applyinfo order by id asc limit 1
     </select>
-
-
-
+    <select id="getUnlicenseNumber" resultType="int">
+        select count(*) from license_applyinfo where license_applyinfo.status=0
+    </select>
 </mapper>

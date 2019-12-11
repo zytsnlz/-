@@ -116,5 +116,11 @@ public interface UpAndDownDao {
      */
     int getLastLicenseId();
 
+    /**
+     * 获取未处理的通行证数量
+     * @return
+     */
+    int getUnlicenseNumber();
+
 
 }

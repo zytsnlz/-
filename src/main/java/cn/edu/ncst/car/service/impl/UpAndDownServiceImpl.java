@@ -1,6 +1,7 @@
 package cn.edu.ncst.car.service.impl;
 
 import cn.edu.ncst.car.dao.UpAndDownDao;
+import cn.edu.ncst.car.mbg.mapper.LicenseApplyinfoMapper;
 import cn.edu.ncst.car.mbg.model.AccountIdentifyinfo;
 import cn.edu.ncst.car.service.AdminLicenseApplyService;
 import cn.edu.ncst.car.service.AdminUserApplyService;
@@ -22,6 +23,8 @@ public class UpAndDownServiceImpl implements UpAndDownService {
     @Autowired
     UpAndDownDao upAndDownDao;
 
+    @Autowired
+    LicenseApplyinfoMapper licenseApplyinfoMapper;
 
     @Override
     public AccountIdentifyinfo SelectPreviousApplyInfo(int id) {
@@ -79,17 +82,25 @@ public class UpAndDownServiceImpl implements UpAndDownService {
     @Override
     public Map<String, Object> SelectNextLicenseApply(int id) {
 
-        int lastId = upAndDownDao.getLastUnLicenseId();
-        Map<String,Object> map;
+        Map<String,Object> map=null;
+        int unLicenseNumber = upAndDownDao.getUnlicenseNumber();
+        if(unLicenseNumber==0){
+            map = adminLicenseApplyService.selectOneApplyInfoById(id);
+            return map;
+        }
+        Integer lastId = upAndDownDao.getLastUnLicenseId();
+        if(lastId==null){
+            map = adminLicenseApplyService.selectOneApplyInfoById(id);
+            return map;
+        }
         if(id<lastId){
 
             int aimId = upAndDownDao.getLicenseNextId(id);
             map = adminLicenseApplyService.selectOneApplyInfoById(aimId);
+
         }else{
-
-            map = adminLicenseApplyService.selectOneApplyInfoById(lastId);
+            map = adminLicenseApplyService.selectOneApplyInfoById(id);
         }
-
         return map;
     }
 
