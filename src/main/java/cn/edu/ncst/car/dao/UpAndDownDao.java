@@ -120,7 +120,13 @@ public interface UpAndDownDao {
      * 获取未处理的通行证数量
      * @return
      */
-    int getUnlicenseNumber();
+    int getUnLicenseNumber();
+
+    /**
+     * 获取未处理的用户申请数量
+     * @return
+     */
+    int getUnApplyNumber();
 
 
 }

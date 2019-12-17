@@ -70,7 +70,10 @@
     <select id="getLastLicenseId" resultType="int">
          select license_applyinfo.id from license_applyinfo order by id asc limit 1
     </select>
-    <select id="getUnlicenseNumber" resultType="int">
-        select count(*) from license_applyinfo where license_applyinfo.status=0
+    <select id="getUnLicenseNumber" resultType="int">
+        select count(*) from license_applyinfo where status=0
+    </select>
+    <select id="getUnApplyNumber" resultType="int">
+        select count(*) from account_identifyinfo where status=0
     </select>
 </mapper>

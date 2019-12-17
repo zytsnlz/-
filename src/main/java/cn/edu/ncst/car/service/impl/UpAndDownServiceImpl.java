@@ -48,18 +48,24 @@ public class UpAndDownServiceImpl implements UpAndDownService {
     @Override
     public AccountIdentifyinfo SelectNextApplyInfo(int id) {
 
-        int lastId = upAndDownDao.getLastUnApplyId();
-
-        AccountIdentifyinfo accountIdentifyinfo;
+        AccountIdentifyinfo accountIdentifyinfo=null;
+        int unApplyNumber = upAndDownDao.getUnApplyNumber();
+        if(unApplyNumber==0){
+            accountIdentifyinfo = adminUserApplyService.selectOneApplyInfoById(id);
+            return accountIdentifyinfo;
+        }
+        Integer lastId = upAndDownDao.getLastUnApplyId();
         if(id<lastId){
+
             int aimId = upAndDownDao.getApplyNextId(id);
             accountIdentifyinfo = adminUserApplyService.selectOneApplyInfoById(aimId);
 
         }else{
 
-            accountIdentifyinfo = adminUserApplyService.selectOneApplyInfoById(lastId);
-        }
+            int unApplyId = upAndDownDao.getFirstUnApplyId();
+            accountIdentifyinfo = adminUserApplyService.selectOneApplyInfoById(unApplyId);
 
+        }
         return accountIdentifyinfo;
     }
 
@@ -83,23 +89,21 @@ public class UpAndDownServiceImpl implements UpAndDownService {
     public Map<String, Object> SelectNextLicenseApply(int id) {
 
         Map<String,Object> map=null;
-        int unLicenseNumber = upAndDownDao.getUnlicenseNumber();
+        int unLicenseNumber = upAndDownDao.getUnLicenseNumber();
         if(unLicenseNumber==0){
             map = adminLicenseApplyService.selectOneApplyInfoById(id);
             return map;
         }
         Integer lastId = upAndDownDao.getLastUnLicenseId();
-        if(lastId==null){
-            map = adminLicenseApplyService.selectOneApplyInfoById(id);
-            return map;
-        }
+
         if(id<lastId){
 
             int aimId = upAndDownDao.getLicenseNextId(id);
             map = adminLicenseApplyService.selectOneApplyInfoById(aimId);
 
         }else{
-            map = adminLicenseApplyService.selectOneApplyInfoById(id);
+            int unLicenseId = upAndDownDao.getFirstUnLicenseId();
+            map = adminLicenseApplyService.selectOneApplyInfoById(unLicenseId);
         }
         return map;
     }
