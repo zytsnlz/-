@@ -5,6 +5,7 @@ import cn.edu.ncst.car.dto.CountCondition;
 import cn.edu.ncst.car.dto.CountResult;
 
 import java.util.List;
+import java.util.Map;
 
 public interface WorkCountService {
 
@@ -12,7 +13,7 @@ public interface WorkCountService {
      * 统计某一位管理员的工作审核数量
      * @return
      */
-    int countOne(CountCondition countCondition);
+    Map<Object,Object> countOne(CountCondition countCondition);
 
     /**
      * 统计所有的管理员的工作审核数量

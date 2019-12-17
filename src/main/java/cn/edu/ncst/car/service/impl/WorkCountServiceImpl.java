@@ -11,12 +11,14 @@ import cn.edu.ncst.car.mbg.model.AuthUserRoleRelation;
 import cn.edu.ncst.car.mbg.model.AuthUserRoleRelationExample;
 import cn.edu.ncst.car.service.UmsAdminService;
 import cn.edu.ncst.car.service.WorkCountService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class WorkCountServiceImpl implements WorkCountService {
@@ -31,18 +33,13 @@ public class WorkCountServiceImpl implements WorkCountService {
     AuthUserRoleRelationMapper authUserRoleRelationMapper;
 
     @Override
-    public int countOne(CountCondition countCondition) {
+    public Map<Object,Object> countOne(CountCondition countCondition) {
 
-        String adminName = countCondition.getAdminName();
-        //根据姓名获取管理员的id
-        AuthUser authUser = umsAdminService.getAdminByUsername(adminName);
-        if(authUser==null){
-            return -1;
-        }
-        int adminId = authUser.getId();
-        countCondition.setAdminId(adminId);
-        int count = workCountDao.countWork(countCondition);
-        return count;
+
+        Map<Object, Object> countResult = workCountDao.countWork(countCondition);
+        int  countTotal = workCountDao.countTotal(countCondition);
+        countResult.put("total",countTotal);
+        return countResult;
     }
 
     @Override
@@ -60,18 +57,17 @@ public class WorkCountServiceImpl implements WorkCountService {
 
         Date startTime = countAllCondition.getStartTime();
         Date endTime = countAllCondition.getEndTime();
-        Integer recordType = countAllCondition.getRecordType();
 
         CountCondition countCondition = new CountCondition();
         countCondition.setEndTime(endTime);
         countCondition.setStartTime(startTime);
-        countCondition.setRecordType(recordType);
 
-        CountResult countResult = new CountResult();
-        List<CountResult> countResultList = new ArrayList<>();
+
+
+        List<CountResult> countResultList = new ArrayList<CountResult>();
 
         for (Integer integer : idList) {
-
+            CountResult countResult = new CountResult();
             countResult.setId(integer);
 
             AuthUser authUser = authUserMapper.selectByPrimaryKey(integer);
@@ -81,9 +77,8 @@ public class WorkCountServiceImpl implements WorkCountService {
             countCondition.setAdminName(adminName);
             countCondition.setAdminId(integer);
             //获取某位管理员的审核数量
-            int workcount = countOne(countCondition);
+            Map<Object,Object> workcount = countOne(countCondition);
             countResult.setWorkCount(workcount);
-
             countResultList.add(countResult);
         }
         return countResultList;

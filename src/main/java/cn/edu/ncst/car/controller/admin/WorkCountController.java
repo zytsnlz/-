@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Api(description = "工作量的统计",tags = "WorkCountController")
@@ -23,12 +24,9 @@ public class WorkCountController {
 
     @ApiOperation("统计某一位管理员的工作量")
     @RequestMapping(value = "/count",method = RequestMethod.POST)
-    public CommonResult<Integer> WorkCountOne(@RequestBody CountCondition countCondition){
+    public CommonResult<Map<Object,Object>> WorkCountOne(@RequestBody CountCondition countCondition){
 
-        int count = workCountService.countOne(countCondition);
-        if(count==-1){
-            return CommonResult.validateFailed("不存在该管理员");
-        }
+        Map<Object,Object> count = workCountService.countOne(countCondition);
         return CommonResult.success(count);
 
     }
@@ -38,6 +36,7 @@ public class WorkCountController {
     public List<CountResult> WorkCountAll(@RequestBody CountAllCondition countAllCondition){
 
            List<CountResult> countResultList = workCountService.countAll(countAllCondition);
+
            return countResultList;
 
     }

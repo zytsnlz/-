@@ -8,7 +8,7 @@
     <result column="image_person_id" jdbcType="INTEGER" property="imagePersonId" />
     <result column="plate_no" jdbcType="VARCHAR" property="plateNo" />
     <result column="plate_type" jdbcType="VARCHAR" property="plateType" />
-    <result column="pass_license_type" jdbcType="VARCHAR" property="passLicenseType" />
+    <result column="pass_license_type" jdbcType="INTEGER" property="passLicenseType" />
     <result column="start_position" jdbcType="VARCHAR" property="startPosition" />
     <result column="end_position" jdbcType="VARCHAR" property="endPosition" />
     <result column="apply_route" jdbcType="VARCHAR" property="applyRoute" />
@@ -127,7 +127,7 @@
       comment, status, handler_id
       )
     values (#{userId,jdbcType=INTEGER}, #{imageCompanyId,jdbcType=INTEGER}, #{imagePersonId,jdbcType=INTEGER}, 
-      #{plateNo,jdbcType=VARCHAR}, #{plateType,jdbcType=VARCHAR}, #{passLicenseType,jdbcType=VARCHAR}, 
+      #{plateNo,jdbcType=VARCHAR}, #{plateType,jdbcType=VARCHAR}, #{passLicenseType,jdbcType=INTEGER}, 
       #{startPosition,jdbcType=VARCHAR}, #{endPosition,jdbcType=VARCHAR}, #{applyRoute,jdbcType=VARCHAR}, 
       #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{driverName,jdbcType=VARCHAR}, 
       #{driverIdcardNo,jdbcType=VARCHAR}, #{applyCreatetime,jdbcType=TIMESTAMP}, #{dealTime,jdbcType=TIMESTAMP}, 
@@ -212,7 +212,7 @@
         #{plateType,jdbcType=VARCHAR},
       </if>
       <if test="passLicenseType != null">
-        #{passLicenseType,jdbcType=VARCHAR},
+        #{passLicenseType,jdbcType=INTEGER},
       </if>
       <if test="startPosition != null">
         #{startPosition,jdbcType=VARCHAR},
@@ -280,7 +280,7 @@
         plate_type = #{record.plateType,jdbcType=VARCHAR},
       </if>
       <if test="record.passLicenseType != null">
-        pass_license_type = #{record.passLicenseType,jdbcType=VARCHAR},
+        pass_license_type = #{record.passLicenseType,jdbcType=INTEGER},
       </if>
       <if test="record.startPosition != null">
         start_position = #{record.startPosition,jdbcType=VARCHAR},
@@ -331,7 +331,7 @@
       image_person_id = #{record.imagePersonId,jdbcType=INTEGER},
       plate_no = #{record.plateNo,jdbcType=VARCHAR},
       plate_type = #{record.plateType,jdbcType=VARCHAR},
-      pass_license_type = #{record.passLicenseType,jdbcType=VARCHAR},
+      pass_license_type = #{record.passLicenseType,jdbcType=INTEGER},
       start_position = #{record.startPosition,jdbcType=VARCHAR},
       end_position = #{record.endPosition,jdbcType=VARCHAR},
       apply_route = #{record.applyRoute,jdbcType=VARCHAR},
@@ -367,7 +367,7 @@
         plate_type = #{plateType,jdbcType=VARCHAR},
       </if>
       <if test="passLicenseType != null">
-        pass_license_type = #{passLicenseType,jdbcType=VARCHAR},
+        pass_license_type = #{passLicenseType,jdbcType=INTEGER},
       </if>
       <if test="startPosition != null">
         start_position = #{startPosition,jdbcType=VARCHAR},
@@ -415,7 +415,7 @@
       image_person_id = #{imagePersonId,jdbcType=INTEGER},
       plate_no = #{plateNo,jdbcType=VARCHAR},
       plate_type = #{plateType,jdbcType=VARCHAR},
-      pass_license_type = #{passLicenseType,jdbcType=VARCHAR},
+      pass_license_type = #{passLicenseType,jdbcType=INTEGER},
       start_position = #{startPosition,jdbcType=VARCHAR},
       end_position = #{endPosition,jdbcType=VARCHAR},
       apply_route = #{applyRoute,jdbcType=VARCHAR},

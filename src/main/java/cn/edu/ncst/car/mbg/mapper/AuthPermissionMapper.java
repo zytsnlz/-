@@ -12,7 +12,7 @@ public interface AuthPermissionMapper {
 
     int deleteByExample(AuthPermissionExample example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(AuthPermission record);
 
@@ -20,7 +20,7 @@ public interface AuthPermissionMapper {
 
     List<AuthPermission> selectByExample(AuthPermissionExample example);
 
-    AuthPermission selectByPrimaryKey(Long id);
+    AuthPermission selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") AuthPermission record, @Param("example") AuthPermissionExample example);
 

@@ -1,6 +1,8 @@
 package cn.edu.ncst.car.dto;
 
 
+import java.util.Map;
+
 public class CountResult {
 
     /**
@@ -14,7 +16,7 @@ public class CountResult {
     /**
      * 管理员的处理的记录条数
      */
-    public Integer workCount;
+    public Map<Object,Object> workCount;
 
     public Integer getId() {
         return id;
@@ -32,11 +34,11 @@ public class CountResult {
         this.name = name;
     }
 
-    public Integer getWorkCount() {
+    public Map<Object, Object> getWorkCount() {
         return workCount;
     }
 
-    public void setWorkCount(Integer workCount) {
+    public void setWorkCount(Map<Object, Object> workCount) {
         this.workCount = workCount;
     }
 }

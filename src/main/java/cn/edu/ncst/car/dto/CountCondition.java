@@ -1,6 +1,7 @@
 package cn.edu.ncst.car.dto;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiParam;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -24,8 +25,6 @@ public class CountCondition {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
 
-    @ApiModelProperty("处理的用户申请记录的类型，0-用户认证申请，1-通行证申请")
-    private Integer recordType;
 
     public Integer getAdminId() {
         return adminId;
@@ -35,13 +34,6 @@ public class CountCondition {
         this.adminId = adminId;
     }
 
-    public String getAdminName() {
-        return adminName;
-    }
-
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
-    }
 
     public Date getStartTime() {
         return startTime;
@@ -59,11 +51,12 @@ public class CountCondition {
         this.endTime = endTime;
     }
 
-    public Integer getRecordType() {
-        return recordType;
+    public String getAdminName() {
+        return adminName;
     }
 
-    public void setRecordType(Integer recordType) {
-        this.recordType = recordType;
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 }
+

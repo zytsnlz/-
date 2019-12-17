@@ -495,62 +495,52 @@ public class LicenseApplyinfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPassLicenseTypeEqualTo(String value) {
+        public Criteria andPassLicenseTypeEqualTo(Integer value) {
             addCriterion("pass_license_type =", value, "passLicenseType");
             return (Criteria) this;
         }
 
-        public Criteria andPassLicenseTypeNotEqualTo(String value) {
+        public Criteria andPassLicenseTypeNotEqualTo(Integer value) {
             addCriterion("pass_license_type <>", value, "passLicenseType");
             return (Criteria) this;
         }
 
-        public Criteria andPassLicenseTypeGreaterThan(String value) {
+        public Criteria andPassLicenseTypeGreaterThan(Integer value) {
             addCriterion("pass_license_type >", value, "passLicenseType");
             return (Criteria) this;
         }
 
-        public Criteria andPassLicenseTypeGreaterThanOrEqualTo(String value) {
+        public Criteria andPassLicenseTypeGreaterThanOrEqualTo(Integer value) {
             addCriterion("pass_license_type >=", value, "passLicenseType");
             return (Criteria) this;
         }
 
-        public Criteria andPassLicenseTypeLessThan(String value) {
+        public Criteria andPassLicenseTypeLessThan(Integer value) {
             addCriterion("pass_license_type <", value, "passLicenseType");
             return (Criteria) this;
         }
 
-        public Criteria andPassLicenseTypeLessThanOrEqualTo(String value) {
+        public Criteria andPassLicenseTypeLessThanOrEqualTo(Integer value) {
             addCriterion("pass_license_type <=", value, "passLicenseType");
             return (Criteria) this;
         }
 
-        public Criteria andPassLicenseTypeLike(String value) {
-            addCriterion("pass_license_type like", value, "passLicenseType");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassLicenseTypeNotLike(String value) {
-            addCriterion("pass_license_type not like", value, "passLicenseType");
-            return (Criteria) this;
-        }
-
-        public Criteria andPassLicenseTypeIn(List<String> values) {
+        public Criteria andPassLicenseTypeIn(List<Integer> values) {
             addCriterion("pass_license_type in", values, "passLicenseType");
             return (Criteria) this;
         }
 
-        public Criteria andPassLicenseTypeNotIn(List<String> values) {
+        public Criteria andPassLicenseTypeNotIn(List<Integer> values) {
             addCriterion("pass_license_type not in", values, "passLicenseType");
             return (Criteria) this;
         }
 
-        public Criteria andPassLicenseTypeBetween(String value1, String value2) {
+        public Criteria andPassLicenseTypeBetween(Integer value1, Integer value2) {
             addCriterion("pass_license_type between", value1, value2, "passLicenseType");
             return (Criteria) this;
         }
 
-        public Criteria andPassLicenseTypeNotBetween(String value1, String value2) {
+        public Criteria andPassLicenseTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("pass_license_type not between", value1, value2, "passLicenseType");
             return (Criteria) this;
         }

@@ -20,7 +20,7 @@ public class LicenseApplyinfo implements Serializable {
     private String plateType;
 
     @ApiModelProperty(value = "通行证类型")
-    private String passLicenseType;
+    private Integer passLicenseType;
 
     @ApiModelProperty(value = "起点位置")
     private String startPosition;
@@ -108,11 +108,11 @@ public class LicenseApplyinfo implements Serializable {
         this.plateType = plateType;
     }
 
-    public String getPassLicenseType() {
+    public Integer getPassLicenseType() {
         return passLicenseType;
     }
 
-    public void setPassLicenseType(String passLicenseType) {
+    public void setPassLicenseType(Integer passLicenseType) {
         this.passLicenseType = passLicenseType;
     }
 
